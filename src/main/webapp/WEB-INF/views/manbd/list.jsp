@@ -53,7 +53,7 @@ a {
 					<th>제목</th>
 					<th>등록일</th>
 					<th>공지사항,이벤트</th>
-					<th>지점</th>
+					<th>극장</th>
 				</tr>
 				<c:forEach items="${bList}" var="managerbd">
 					<tr>
@@ -88,7 +88,7 @@ a {
 <select name="searchn">
 <option value="0">제목</option>
 <option value="1">내용</option>
-<option value="2">지점</option>
+<option value="2">극장</option>
 </select>
 <input type="text" name="search" size="15" maxlength="50" /> 
 <input type="submit" value="검색" />
