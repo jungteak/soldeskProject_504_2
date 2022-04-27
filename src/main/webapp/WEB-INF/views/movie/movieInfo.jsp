@@ -7,7 +7,7 @@
 	
 	td {padding:10px;}
 	
-	.poster {padding:10px;}
+	.poster {padding:10px; cursor:pointer;}
 	
 	#movieMenu ul li{display:inline-block;}
 	
@@ -18,21 +18,60 @@
 	.slider-pager li{display: inline;}
 	
 	
+	#contents{
+      margin: 0 auto;
+    }
+    .slider-box{
+      margin: 40px 0;
+    }
+    .slider-for{
+    	margin:auto;
+    	display:inline-block; 
+    }
+    .slider-nav li{
+    }
 	
-	/* div #img {
-    	overflow: scroll;
-    	border:solid 1px green;
-    	height: 300px;
-    	width: 1400px;
-	} */
-
+	.slick-dots li{display:inline-block; margin:3px;}
+	.slick-dots {width:1000px; height:300px; overflow:scroll; margin:auto;}
+	.slcik-list .slick-track{ display:inline-block;
+	}
+	.slick-next {
+	display:inline-block;
+    position:absolute;
+    right:20px;
+    border:none;
+	background-color:white;
+	}
+	.slick-prev {
+		display:inline-block;
+		position:absolute;
+   		left:20px;
+		border:none;
+		background-color:white;
+	}
+	.slick-next:before {
+	    content:url(/images/next.png);
+	}
+	.slick-prev:before {
+	    content:url(/images/prev.png);
+	}
+	
+	#posterNinfoTable {overflow:hidden; font-weight:bold;}
+	#posterNinfoTable {border:2px solid; border-collapse:collapse;}
+	#posterNinfoTable tr td{border:2px solid; border-collapse:collapse;}
+	table {border-collapse:collapse;}
+	table tr td {border-collapse:collapse;}
+	.title,.tagline {font-size:20px}
+	
+	.name,.peopleImg {margin:auto;}
+	
+	details summary {font-weight:bold;}
 </style>
 </head>
 <link href="https://fonts.googleapis.com/css?family=Jua:400" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="/js/jquery.bxslider.min.js"></script>
-<link rel="stylesheet" href="/css/jquery.bxslider.min.css">
-<link rel="stylesheet" href="/css/summary.css">
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script>
 	$(function(){
 			
@@ -61,8 +100,8 @@
 					img = "/images/noImg.JPG";
 				}//if
 				
-				let str = "<table border='1'><tr><td><img width=300 height=400 margin=50 src="+img+" onerror=this.src='/images/noImg.JPG'></td>";
-				str += "<td><ul style='list-style-type:none;'><li>제목 : "+data.title+"</li>";
+				let str = "<h1>영화정보</h1><table id='posterNinfoTable'><tr><td><img width=300 height=400 margin=50 src="+img+" onerror=this.src='/images/noImg.JPG'></td>";
+				str += "<td><ul style='list-style-type:none;'><li class='title'>제목 : "+data.title+"</li>";
 				if(data.release_date!=""){
 					str += "<li>개봉일 : "+data.release_date+"</li>";
 				}
@@ -73,7 +112,7 @@
 					str += "<li>상영 시간 : "+data.runtime+"</li><br>";
 				}
 				if(data.tagline!=""){
-					str += "<li>"+data.tagline+"</li>";
+					str += "<li class='tagline'>"+data.tagline+"</li>";
 				}
 				if(data.overview!=""){
 					str += "<li>줄거리 : "+data.overview+"</li><br>";
@@ -98,7 +137,7 @@
 				
 				let str = "";
 				if(data.cast!=""){
-					str += "<h3>등장인물</h3><table border='1'><tr>";
+					str += "<h1>등장인물</h1><table border='2px' collapse><tr>";
 					
 					for(let i in data.cast){
 						if(i==8){
@@ -110,7 +149,7 @@
 						}else{
 							img = "/images/noImg.JPG";
 						}//if
-						str += "<td><img class='peopleImg' width=100 height=133 margin=50 src="+img+"><div class='name'>"+data.cast[i].name+"</div></td>";
+						str += "<td><div align='center'><img class='peopleImg' width=100 height=133 margin=50 src="+img+"></div><div align='center' class='name'>"+data.cast[i].name+"</div></td>";
 					}//for
 				}//if 등장인물 정보 출력
 				
@@ -124,7 +163,7 @@
 							if(data.crew[i].department=="Directing"&&data.crew[i].job=="Director"){
 								if(chk==0){
 									str = "";
-									str += "<h3>감독</h3><table border='1'><tr>";
+									str += "<h1>감독</h1><table border='2px' collapse><tr>";
 									chk = 1;
 								}
 								if(data.crew[i].profile_path!=null){
@@ -132,7 +171,7 @@
 								}else{
 									img = "/images/noImg.JPG";
 								}//if
-								str += "<td><img width=100 height=133 margin=50 src="+img+"><div class='name'>"+data.crew[i].name+"</div></td>";
+								str += "<td><div align='center'><img class='peopleImg' width=100 height=133 margin=50 src="+img+"></div><div class='name' align='center'>"+data.crew[i].name+"</div></td>";
 							}
 						}//for
 					str += "</tr></table>";
@@ -142,55 +181,50 @@
 				
 				
 			})//CreditAjax
-		
-
-			/* $.ajax({
-				url:"https://api.themoviedb.org/3/movie/"+${id}+"/images?api_key="+api_key,
-				type:"get",
-				dataType:"json"
-			}).done(function(data){
 				
-				if(data.posters!=""){
-				$("#img").prepend("<h3>사진</h3>");
-				let str = "";
-				let str_pager = "";
-				
-				for(let i in data.posters){
-					let img = "https://image.tmdb.org/t/p/original/"+data.posters[i].file_path;
-					str += "<li><img class='poster' width=250 height=400 margin=5 src="+img+"></li>";
-					str_pager += "<li><a href='#' data-slide-index="+i+"><img src="+img+" width=54 height=72></a></li>";
-				}//for
-				
-				
-				$(".slider-gallery").append(str);
-				$(".slider-pager").append(str_pager);
+				$.ajax({
+					url:"https://api.themoviedb.org/3/movie/"+${id}+"/images?api_key="+api_key,
+					type:"get",
+					dataType:"json"
+				}).done(function(data){
 					
-				}//if
+					if(data.posters!=""){
+					$("#img").prepend("<h1>사진</h1>");
+					let str = "";
+					let str_pager = "";
+					
+					for(let i in data.posters){
+						let img = "https://image.tmdb.org/t/p/original/"+data.posters[i].file_path;
+						str += "<li><img class='poster' width=350 height=500 margin=5 src="+img+" alt="+i+"></li>";
+					}//for
+					
+					
+					$(".slider-for").append(str);
+					
+					$(".slider-for").slick({
+						slide:'li',
+						slidesToShow:1,
+						dots:true,
+						autoplay:false,
+						prevArrow: '<button class="slick-prev"></button>',
+					    nextArrow: '<button class="slick-next"></button>',
+						customPaging: function(slider, i) { 
+							let img = "https://image.tmdb.org/t/p/original/"+data.posters[i].file_path;
+				            return "<img class='thumb' width:100 height=150 src="+img+" />";
+				        }
+					});
+						
+					}//if
+					
+				})//img Ajax
 				
-			})//img Ajax
-			
-		
-			
-			$('.slide_gallery').bxSlider({
-				auto: true,
-				autoControls: false,
-				pagerCustom: '.slider-pager'
-			});//bxSlider */
-				
-			
-			
-				
-			
-			
-		
-		
 			$.ajax({
 				url:"https://api.themoviedb.org/3/movie/"+${id}+"/videos?api_key="+api_key+"&language=ko-KR",
 				type:"get",
 				dataType:"json"
 			}).done(function(data){
 				if(data.results!=""){
-					$("#trailer").append("<h3>예고편</h3>");
+					$("#trailer").append("<h1>예고편</h1>");
 					let str = "";
 					for(let i in data.results){
 						let url = "https://www.youtube.com/embed/"+data.results[0].key+"?mute=0";
@@ -221,20 +255,23 @@
 					
 				}
 			})//search click
+			
+			
 		
 	});
 </script>
 <body>
 <div id="container">
-	<div id="body">
+	
 	<div id="movieMenu">
 		<ul>
 			<li><a href="/movie/boxOffice">박스오피스</a></li>
 			<li><a href="/movie/upComming">최신 개봉 영화</a></li>
-			<li><a href="/movie/nowPlaying">현재 상영중</a></li>
 			<li><input id="key" name="key" size="10"><button id="search">검색</button></li>
 		</ul>
 	</div>
+	<div id="body">
+	
 		<div id="posterNinfo">
 		</div>
 		<div id="people">
@@ -245,31 +282,9 @@
 				</tr>
 			</table>
 		</div>
-		<div id="img">
-			<div id="gallery_wrap">
-				<ul class="slider-gallery">
-					<li><img src="/images/pic_1.jpg" alt="사진1"></li>
-					<li><img src="/images/pic_2.jpg" alt="사진2"></li>
-					<li><img src="/images/pic_3.jpg" alt="사진3"></li>
-					<li><img src="/images/pic_4.jpg" alt="사진4"></li>
-					<li><img src="/images/pic_5.jpg" alt="사진5"></li>
-				</ul>
-				<ul class="slider-pager">
-					<li><a href="#" data-slide-index="0">
-						<img src="/images/pic_t1.jpg" alt="사진1"></a>
-					</li>
-					<li><a href="#" data-slide-index="1">
-						<img src="/images/pic_t2.jpg" alt="사진2"></a>
-					</li>
-					<li><a href="#" data-slide-index="2">
-						<img src="/images/pic_t3.jpg" alt="사진3"></a>
-					</li>
-					<li><a href="#" data-slide-index="3">
-						<img src="/images/pic_t4.jpg" alt="사진4"></a>
-					</li>
-					<li><a href="#" data-slide-index="4">
-						<img src="/images/pic_t5.jpg" alt="사진5"></a>
-					</li>
+		<div id="content">
+			<div id="slide-box">
+				<ul class="slider-for">
 				</ul>
 			</div>
 		</div>

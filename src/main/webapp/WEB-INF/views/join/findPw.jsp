@@ -4,6 +4,15 @@
 <head>
 <title>비밀번호 찾기</title>
 </head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link href="/css/joinForm.css" rel="stylesheet">
+<style>
+	.exMsg h3 {font-weight:bold; text-align:center}
+	.exMsg {padding-bottom:10px;}
+</style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 
@@ -16,11 +25,17 @@
 		
 		 $("#mail_ck").click(function(){
 			 let email = $("#email").val();
+			 let regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 			 
 			if(!email){
 					$("#emailresult").html("메일 주소를 입력하세요");
 					return false;
-				} 
+				}//if
+				
+			if(!(regExp.test(email))){
+				$("#emailresult").html("형식에 맞게 메일 주소를 입력하세요");
+				return false;
+			}//if
 			
 			let mem_name=$("#name").val();
 			let mem_email=$("#email").val();
@@ -79,18 +94,44 @@
 
 </script>
 <body>
-<form id="findPw" method="post">
-	<h3>회원 가입시 입력한 이름과 아이디와 이메일을 입력하세요</h3>
-	<table>
-		<tr><td>이름</td><td><input name="mem_name" id="name"></td></tr>
-		<tr><td>아이디</td><td><input name="mem_id" id="id"></td></tr>
-		<tr><td>email</td><td><input name="mem_email" id="email"><input type="button" id="mail_ck" value="메일 인증">
-		<div id="emailresult"></div>
-		<div id="input"><input id="ck_num"> <input type="button" id="ck_b" value="인증 확인"></div>
-		<div id="result"></div>
-		</td></tr>
-		<tr><td colspan="2"><input type="submit" value="다음"></td></tr>
-	</table>
-</form>
+<div id="container">
+	<div id="body">
+		<div class="registration-form">
+			<form id="findPw" method="post">
+				<div class="form-icon">
+		        	<span><i class="icon icon-user" id="icon"></i></span>
+		        </div>
+				<div class="form-group">
+					<div class="exMsg"><h3>회원 가입시 입력한 이름과</h3></div>
+					<div class="exMsg"><h3>아이디,이메일을 입력하세요</h3></div>
+				</div>
+				<div class="form-group">
+					<div class="title"><h5>이름</h5></div>
+					<input class="form-control item" name="mem_name" id="name" placeholder="이름" value="${dto.mem_name}">
+					<div class="msg" id="name_msg"></div>
+				</div>
+				<div class="form-group">
+					<div class="title"><h5>아이디</h5></div>
+					<input class="form-control item" name="mem_id" id="id" placeholder="아이디">
+					<div class="msg" id="id_msg"></div>
+				</div>
+				<div class="form-group">
+					<div class="title"><h5>email</h5></div>
+					<input class="form-control item" id="email" name="mem_email" placeholder="email">
+					<button type="button" id="mail_ck" class="btn btn-block create-account">이메일 인증</button>
+					<div class="msg" id="emailresult"></div>
+				</div>
+				<div class="form-group" id="input">
+					<input class="form-control item" id="ck_num" placeholder="인증번호를 입력하세요">
+					<button type="button" class="btn btn-block create-account" id="ck_b">인증확인</button>
+					<div class="msg" id="result"></div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-block create-account">다음</button>
+				</div>	
+			</form>
+		</div>
+	</div>
+</div>
 </body>
 </html>

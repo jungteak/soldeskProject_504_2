@@ -41,8 +41,13 @@ public class MemberController {
 		}
 		
 		service.insertMember(dto);
-		return "redirect:/login";
+		return "redirect:/joinSuccess";
 	}//insertMember
+	
+	@GetMapping("/joinSuccess")
+	public String joinSuccess() {
+		return "join/joinSuccess";
+	}//joinSuccess
 	
 	@GetMapping("/idCheck")
 	@ResponseBody

@@ -13,8 +13,9 @@ update managerbd set manbd_title = #{manbd_title}, manbd_div = #{manbd_div}, man
 
 <delete parameterType="int" id="deleteBoard"> delete from managerbd where manbd_no = #{manbd_no} </delete>
 
-<select parameterType="map" id="boardList" resultType="movie.pro.manbd.dto.ManbdDto">
 
+
+<select parameterType="map" id="boardList" resultType="movie.pro.manbd.dto.ManbdDto">
 <![CDATA[
 		select * from
 		(select manbd_no, manbd_title, manbd_content, manbd_regdate, manbd_cinema ,manbd_div ,
@@ -22,8 +23,28 @@ update managerbd set manbd_title = #{manbd_title}, manbd_div = #{manbd_div}, man
 		from (select * from managerbd order by manbd_regdate desc)
 		order by manbd_regdate desc)where r >= #{start} AND r <= #{end}
  		]]>
-
 </select>
+
+<select parameterType="map" id="noticeList" resultType="movie.pro.manbd.dto.ManbdDto">
+<![CDATA[
+		select * from
+		(select manbd_no, manbd_title, manbd_content, manbd_regdate, manbd_cinema ,manbd_div ,
+		 rownum r
+		from (select * from managerbd where MANBD_DIV = '공지사항' order by manbd_regdate desc)
+		order by manbd_regdate desc)where r >= #{start} AND r <= #{end}
+ 		]]>
+</select>
+
+<select parameterType="map" id="eventList" resultType="movie.pro.manbd.dto.ManbdDto">
+<![CDATA[
+		select * from
+		(select manbd_no, manbd_title, manbd_content, manbd_regdate, manbd_cinema ,manbd_div ,
+		 rownum r
+		from (select * from managerbd where MANBD_DIV = '이벤트' order by manbd_regdate desc)
+		order by manbd_regdate desc)where r >= #{start} AND r <= #{end}
+ 		]]>
+</select>
+
 
 <select id="count" resultType="int"> select count(*) from managerbd </select>
 <select parameterType="int" id="boardOne" resultType="movie.pro.manbd.dto.ManbdDto"> 
@@ -47,6 +68,7 @@ select * from managerbd where manbd_no = #{manbd_no} </select>
 		(select manbd_no, manbd_title, manbd_content, manbd_regdate,manbd_cinema ,manbd_div,
 		rownum r
 		from (select * from managerbd order by manbd_regdate desc) 
+		
 		<where>
 			<choose>
 				<when test="searchn == 0">

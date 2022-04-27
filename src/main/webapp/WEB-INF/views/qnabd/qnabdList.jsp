@@ -8,7 +8,14 @@
 <!--  bList begin end count pageNum totalPages -->
 <title>자주 묻는 질문</title>
 <style>
-#center {
+
+hr {
+height:1px;
+color:black;
+background-color:black;
+}
+
+#body {
 	width: 1200px;
 	margin-left: auto;
 	margin-right: auto;
@@ -22,14 +29,25 @@ ul li {
 	 display:inline-block;
 }
 
-.qnabdList h5 {
-	display:inline-block;
+.qnabdList strong {
+	font-size:30px;
+	font-weight:bold;
 }
+.qnabdList span {
+	font-size:20px;
+	font-weight:bold;
+}
+
+.qnabdList button{
+	position:relative;
+}
+
 #q #btn {
 	display:inline;
 }
 </style>
 </head>
+<link href="/css/pager.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	
@@ -74,7 +92,8 @@ ul li {
 	
 </script>
 <body>
-	<div id="center">
+<div id="container">
+<div id="body">
 	<ul>
 		<li><h3>자주묻는 질문</h3></li>
 		<li><h3>문의사항</h3></li>
@@ -82,30 +101,31 @@ ul li {
 		<div id="qnaboard">
 			<c:forEach items="${list}" var="list">
 				<div class="qnabdList" title="${list.qnabd_no}">
-					<div id="q" title="${list.qnabd_no}"><h5>${list.qnabd_q}</h5>
-					<sec:authorize access="isAuthenticated()">
-					<sec:authentication property="principal" var="user" />
-						<c:if test="${user.username=='admin'}"><button class="qnaupdate" title="${list.qnabd_no}">수정</button> 
-					<button class="qnadelete" title="${list.qnabd_no}">삭제</button></c:if></sec:authorize><hr></div>
-					<div id="a">${list.qnabd_a}<hr></div>
+					<div id="q" title="${list.qnabd_no}"><strong>Q? </strong><span>${list.qnabd_q}</span>
+					<sec:authorize access="hasAuthority('ROLE_ADMIN')"><button class="qnaupdate" title="${list.qnabd_no}">수정</button> 
+					<button class="qnadelete" title="${list.qnabd_no}">삭제</button></sec:authorize><hr></div>
+					<div id="a"><strong>A : </strong><span>${list.qnabd_a}</span><hr></div>
 				</div>
 			</c:forEach>
 		</div>
-			<div id="page">
+			<div id="page" align="center" class="pagination-wrapper">
+			<div class="pagination">
 				<c:if test="${begin > pageNum}">
-					<a href="list?p=${begin-1}">[이전]</a>
+					<a class="prev page-numbers" href="?p=${begin-1}">이전</a>
 				</c:if>
 				<c:forEach begin="${begin}" end="${end}" var="i">
-					<a href="list?p=${i}">${i}</a>
+					<c:if test="${page==i}"><a aria-current="page" class="page-numbers current" href="?p=${i}">${i}</a></c:if>
+					<c:if test="${page!=i}"><a class="page-numbers" href="?p=${i}">${i}</a></c:if>
 				</c:forEach>
 				<c:if test="${end < totalPages }">
-					<a href="list?p=${end+1}">[다음]</a>
+					<a class="next page-numbers" href="?p=${end+1}">다음</a>
 				</c:if>
 			</div>
-			<sec:authorize access="isAuthenticated()">
-			<sec:authentication property="principal" var="user" />
-				<c:if test="${user.username=='admin'}"><div align="right"><button id="qnainsert">글 작성</button></div></c:if>
+			</div>
+			<sec:authorize access="hasAuthority('ROLE_ADMIN')">
+				<div align="right"><button id="qnainsert">글 작성</button></div>
 			</sec:authorize>
-	</div>
+</div>
+</div>
 </body>
 </html>

@@ -25,9 +25,25 @@ public class ManbdService {
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("start", start);
 		m.put("end", end);
-		
 		return dao.boardList(m);
 	}
+	
+	
+public List<ManbdDto> noticeList(int start, int end){
+		
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("start", start);
+		m.put("end", end);
+		return dao.noticeList(m);
+	}
+
+public List<ManbdDto> eventList(int start, int end){
+	
+	Map<String, Object> m = new HashMap<String, Object>();
+	m.put("start", start);
+	m.put("end", end);
+	return dao.eventList(m);
+}
 	
 	public int insert(ManbdDto dto) {
 		return dao.insert(dto);

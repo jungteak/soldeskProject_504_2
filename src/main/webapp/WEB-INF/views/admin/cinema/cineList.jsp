@@ -74,7 +74,19 @@
 <body>
 	<div id="container">
 		<div id="body">
+			<div id="select_area">
+				<ul>
+					<li><a href="cineList?cineArea=서울">서울</a></li>
+					<li><a href="cineList?cineArea=경기">경기</a></li>
+					<li><a href="cineList?cineArea=인천">인천</a></li>
+					<li><a href="cineList?cineArea=대전/충청/세종">대전/충청/세종</a></li>
+					<li><a href="cineList?cineArea=부산/대구/경상">부산/대구/경상</a></li>
+					<li><a href="cineList?cineArea=광주/전라">광주/전라</a></li>
+					<li><a href="cineList?cineArea=강원">강원</a></li>
+				</ul>
+			</div>
 			<c:forEach items="${dto}" var="dto">
+				<c:if test="${cineArea==dto.cine_area}">
 				<details>
 					<summary>
 						극장명 : ${dto.cine_name} / 지역 : ${dto.cine_area} 
@@ -91,6 +103,7 @@
 					</c:forEach>
 					<button class="insertTheater" title="${dto.cine_no}">상영관 추가</button>
 				</details>
+				</c:if>
 			</c:forEach>
 			<div><button id="insertCinema">극장 등록</button></div>
 		</div>

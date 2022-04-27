@@ -21,11 +21,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
-		http.authorizeRequests().antMatchers("/").permitAll();
-		
-		 //http.authorizeRequests().antMatchers("/mainpage").authenticated();//인증에 통과만
 		http.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN");
 		http.authorizeRequests().antMatchers("/qnabd/insert","qnabd/udate/**").hasRole("ADMIN");
+		http.authorizeRequests().antMatchers("/ticket/ticketing/**").hasRole("MEMBER");
+		http.authorizeRequests().antMatchers("/**").permitAll();
 		http.csrf().disable();
 		http.formLogin().loginPage("/login");
 		http.exceptionHandling();
@@ -35,7 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 	}
 	
-	  @Bean public PasswordEncoder passwordEncoder() { return
-	  PasswordEncoderFactories.createDelegatingPasswordEncoder(); }
+	  @Bean public PasswordEncoder passwordEncoder() { 
+		  return PasswordEncoderFactories.createDelegatingPasswordEncoder(); 
+	  }
 	 
 }

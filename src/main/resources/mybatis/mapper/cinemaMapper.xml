@@ -15,7 +15,7 @@
 </delete>
 
 <select id="cineList" resultType="movie.pro.admin.dto.CinemaDto">
-	select * from cinema
+	select * from cinema order by cine_name
 </select>
 
 <select id="cineOne" parameterType="int" resultType="movie.pro.admin.dto.CinemaDto">

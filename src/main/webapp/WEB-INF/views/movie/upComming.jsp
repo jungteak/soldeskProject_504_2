@@ -93,7 +93,6 @@
 		<ul>
 			<li><a href="/movie/boxOffice">박스오피스</a></li>
 			<li><a href="/movie/upComming">최신 개봉 영화</a></li>
-			<li><a href="/movie/nowPlaying">현재 상영중</a></li>
 			<li><input id="key" name="key" size="10"><button id="search">검색</button></li>
 		</ul>
 	</div>

@@ -64,7 +64,15 @@ public class ManbdController {
 		
 		List<ManbdDto> boardList = service.boardList(startRow, endRow);
 		m.addAttribute("bList", boardList);
+		
+		List<ManbdDto> noticeList = service.noticeList(startRow, endRow);
+		m.addAttribute("nList", noticeList);
 
+		List<ManbdDto> eventList = service.eventList(startRow, endRow);
+		m.addAttribute("eList", eventList);
+
+
+		
 		int pageNum = 5;
 		int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0); //전체 페이지 수
 		
@@ -84,7 +92,35 @@ public class ManbdController {
 	}
 	
 	@GetMapping("manbd/content/{no}")
-	public String content(@PathVariable int no, Model m) {
+	public String content(@RequestParam(name="p", defaultValue = "1") int page, @PathVariable int no, Model m) {
+	
+			//글이 있는지 체크
+			int count = service.count();
+			if(count > 0) {
+			
+			int perPage = 5; // 한 페이지에 보일 글의 갯수
+			int startRow = (page - 1) * perPage + 1;
+			int endRow = page * perPage;
+			
+			List<ManbdDto> boardList = service.boardList(startRow, endRow);
+			m.addAttribute("bList", boardList);
+
+			int pageNum = 5;
+			int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0); //전체 페이지 수
+			
+			int begin = (page - 1) / pageNum * pageNum + 1;
+			int end = begin + pageNum -1;
+			if(end > totalPages) {
+				end = totalPages;
+			}
+			 m.addAttribute("begin", begin);
+			 m.addAttribute("end", end);
+			 m.addAttribute("pageNum", pageNum);
+			 m.addAttribute("totalPages", totalPages);
+			
+			}
+			m.addAttribute("count", count);
+		
 		ManbdDto dto = service.boardOne(no);
 		m.addAttribute("dto", dto);
 		return "manbd/content";
@@ -140,12 +176,6 @@ public class ManbdController {
 		if(end > totalPages) {
 			end = totalPages;
 		
-		
-		
-			/*
-			 * List<CinemaDto> cList = c_service.cineList(); m.addAttribute("cList", cList);
-			 */
-		
 		}
 			
 		 m.addAttribute("begin", begin);
@@ -160,6 +190,7 @@ public class ManbdController {
 		
 		return "manbd/search";
 	}
+	
 	
 }
 

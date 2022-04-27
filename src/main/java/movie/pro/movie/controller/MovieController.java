@@ -1,7 +1,5 @@
 package movie.pro.movie.controller;
 
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,23 +15,17 @@ public class MovieController {
 		return "movie/boxOffice";
 	}//boxOffice
 	
-	@GetMapping("movie/nowPlaying")
-	public String nowPlaying(@RequestParam(name="p",defaultValue="1") int page,Model m) {
-		m.addAttribute("page",page);
-		return "movie/nowPlaying";
-	}
-	
 	@GetMapping("movie/upComming")
 	public String upComming(@RequestParam(name="p",defaultValue="1") int page,Model m) {
 		m.addAttribute("page",page);
 		return "movie/upComming";
-	}
+	}//upComming
 	
 	@GetMapping("movie/movieInfo/{id}")
 	public String movieInfo(@PathVariable int id,Model m) {
 		m.addAttribute("id",id);
 		return "movie/movieInfo";
-	}
+	}//movieInfo
 	
 	@GetMapping("/movie/searchList/{key}/{totalPages}")
 	public String searchMovie(@RequestParam(name="p",defaultValue="1") int page,
@@ -58,6 +50,6 @@ public class MovieController {
 		m.addAttribute("key",key);
 		
 		return "movie/searchList";
-	}
+	}//movieSearch
 
 }

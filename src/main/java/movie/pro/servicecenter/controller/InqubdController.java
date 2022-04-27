@@ -67,7 +67,6 @@ public class InqubdController {
 		
 		InqubdDto dto = service.selectInqu(inqubd_no);
 		m.addAttribute("dto", dto);
-		
 		int count = service.countInqu();
 		//글이 있는지 체크
 			
@@ -113,7 +112,6 @@ public class InqubdController {
 	public String insertInqu(InqubdDto dto) {
 		
 		service.insertInqu(dto);
-		
 		return "redirect:/inqubd/list";
 	}//insertInqu
 	

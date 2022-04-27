@@ -53,9 +53,9 @@ public class QnabdController {
 			m.addAttribute("pageNum", pageNum);
 			m.addAttribute("totalPages", totalPages);
 		}
+		m.addAttribute("page",page);
 		m.addAttribute("count", count);
-		return "qnabd/qnabdList";
-		
+		return "qnabd/qnabdList";	
 	}
 	
 	@GetMapping("qnabd/insert")

@@ -1,40 +1,86 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
 <title>회원가입</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link href="/css/joinForm.css" rel="stylesheet">
+<style>
+</style>
 </head>
 <body>
-<form:form action="insertMember" modelAttribute="dto" method="post" id="joinform">
-	<table>
-		<tr><td>아이디</td><td><input name="mem_id" id="id" value="${dto.mem_id}" placeholder="4-13자리로 입력해주세요"><input type="button" id="id_check" value="중복 확인" >
-		<div id="id_msg"></div></td></tr>
-		<tr><td>비밀번호</td><td><input name="mem_pw" type="password" id="password" placeholder="4-13자리로 입력해주세요"><form:errors path="mem_pw"/>
-		<div id="pw_msg"></div></td></tr>
-		<tr><td>비밀번호 확인</td><td><input name="password_ck" type="password" id="password_ck" >
-		<div id="pwck_msg"></div></td></tr>
-		<tr><td>이름</td><td><input name="mem_name" id="name" value="${dto.mem_name}">
-		<form:errors path="mem_name"/>
-		<div id="name_msg"></div></td></tr>
-		<tr><td>생년월일</td><td><input name="mem_birth" id="birth" placeholder="yyyy-MM-dd" value=<fmt:formatDate value="${dto.mem_birth}" pattern="yyyy-MM-dd"/>>
-		<form:errors path="mem_birth"/><div id="birth_msg"></div></td></tr>
-		<tr><td>핸드폰번호</td><td><input name="mem_phone" id="phone" placeholder="000-0000-0000" value="${dto.mem_phone}">
-		<form:errors path="mem_phone"/></td></tr>
-		<tr><td>주소</td><td><input name="mem_address" id="address" value="${dto.mem_address}">
-		<input type="button" id="addbtn" value="우편번호 검색" onclick="addPost()">
-		<form:errors path="mem_address"/></td></tr>
-		<tr><td>email</td><td><input name="mem_email" id="email" value="${dto.mem_email}"><input type="button" id="mail_ck" value="메일 인증"><form:errors path="mem_email"/>
-		<div id="emailresult"></div>
-		<div id="input"><input id="ck_num"> <input type="button" id="ck_b" value="인증 확인"></div>
-		<div id="result"></div>
-		</td></tr>
-		<tr><td colspan="2"><input type="submit" value="가입"></td></tr>
-	</table>
-</form:form>
+<div id="container">
+	<div id="body">
+		<div class="registration-form">
+		<form:form action="insertMember" modelAttribute="dto" method="post" id="joinform">
+			<div class="form-icon">
+		                <span><i class="icon icon-user" id="icon"></i></span>
+		            </div>
+		            <div class="form-group">
+		            	<div class="title"><h5>아이디</h5></div>
+		                <input class="form-control item" id="id" name="mem_id" placeholder="4-13자리로 입력하세요" value="${dto.mem_id}">
+		                <button type="button" id="id_check" class="btn btn-block create-account">중복확인</button>
+		                <div class="msg" id="id_msg"><form:errors path="mem_id"/></div>
+		            </div>
+		            <div class="form-group">
+		            	<div class="title"><h5>비밀번호</h5></div>
+		                <input type="password" class="form-control item" name="mem_pw" id="password" placeholder="4-13자리로 입력하세요">
+		           		<div class="msg" id="pw_msg"><form:errors path="mem_pw"/></div>
+		            </div>
+		            <div class="form-group">
+		            	<div class="title"><h5>비밀번호 확인</h5></div>
+		                <input type="password" class="form-control item" id="password_ck" name="password_ck" placeholder="비밀번호 확인">
+		            	<div class="msg" id="pwck_msg"></div>
+		            </div>
+		            <div class="form-group">
+		            	<div class="title"><h5>이름</h5></div>
+		                <input class="form-control item" name="mem_name" id="name" placeholder="이름" value="${dto.mem_name}">
+		            	<div class="msg" id="name_msg"><form:errors path="mem_name"/></div>
+		            </div>
+		            <div class="form-group">
+		            	<div class="title"><h5>생년월일</h5></div>
+		                <input class="form-control item" name="mem_birth" id="birth" placeholder="yyyy-MM-dd" value=<fmt:formatDate value="${dto.mem_birth}" pattern="yyyy-MM-dd"/>>
+		            	<div class="msg" id="birth_msg"><form:errors path="mem_birth"/></div>
+		            </div>
+		            <div class="form-group">
+		            	<div class="title"><h5>핸드폰번호</h5></div>
+		                <input class="form-control item" name="mem_phone" id="phone" placeholder="010-0000-0000" value="${dto.mem_phone}">
+		            	<div class="msg" id="phone_msg"><form:errors path="mem_phone"/></div>
+		            </div>
+		            <div class="form-group">
+		            	<div class="title"><h5>주소</h5></div>
+		                <input class="form-control item" name="mem_address" id="address" placeholder="주소" value="${dto.mem_address}">
+		                <button type="button" class="btn btn-block create-account" id="addbtn" onclick="addPost()">우편번호 검색</button>
+		            	<div class="msg"><form:errors path="mem_address"/></div>
+		            </div>
+		            <div class="form-group">
+		            	<div class="title"><h5>email</h5></div>
+		                <input class="form-control item" id="email" name="mem_email" placeholder="email" value="${dto.mem_email}">
+		                <button type="button" id="mail_ck" class="btn btn-block create-account">이메일 인증</button>
+		            	<div class="msg" id="emailresult"><form:errors path="mem_email"/></div>
+		            </div>
+		            <div class="form-group" id="input">
+		                <input class="form-control item" id="ck_num" placeholder="인증번호를 입력하세요">
+		                <button type="button" class="btn btn-block create-account" id="ck_b">인증확인</button>
+		            	<div class="msg" id="result"></div>
+		            </div>
+		            <div class="form-group">
+		                <button type="submit" class="btn btn-block create-account">회원가입</button>
+		            </div>
+		</form:form>
+		</div>
+	</div>
+</div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 <script>
 	
 		function addPost(){
@@ -54,10 +100,19 @@
 			
 			 $("#mail_ck").click(function(){
 				 let email = $("#email").val();
-				if(!email){
+				 let regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+				
+				 if(!email){
 						$("#emailresult").html("메일 주소를 입력하세요");
 						return false;
-					} 
+					}//if
+				
+				if(!(regExp.test(email))){
+					$("#emailresult").html("형식에 맞게 메일 주소를 입력하세요");
+					return false;
+				}//if
+				
+				
 			 $.ajax({url:"/send",
 				 	data:"emailAddress="+email,
 					dataType:"json"}
@@ -68,7 +123,8 @@
 						$("#input").show();
 						$("#ck_b").show();
 					}
-				}); 
+				});//ajax
+			 
 			})//mail 전송
 			
 			$("#ck_b").click(function(){
@@ -117,25 +173,27 @@
 			
 			if($("#id_ck").val()!=1){
 				$("#id_msg").html("아이디 중복 체크 하셔야 합니다.");
+				$("#id").focus();
 				return false;
 			}//id 중복체크
 			
 			if(pw!=pwck){
+				$("#password").focus();
 				$("#pwck_msg").html("입력한 번호와 일치하지 않습니다.");
 				return false;
 			}//비밀번호 확인
 			
 			if(!(reg.test(birth))){
+				$("#birth").focus();
 				$("#birth_msg").html("형식에 맞게 입력 해 주세요");
 				return false;
 			}
 
-			 if($("#ck").val() != 1){
+			if($("#ck").val() != 1){
+				 $("#email").focus();
 				$("#result").html("이메일 인증 하셔야 합니다.");
 				return false;
 			}
-			
-			alert("회원가입이 완료되었습니다!");
 			 
 		})//submit
 		

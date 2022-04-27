@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +24,10 @@ th {border: 1px solid black;
 	background-color: pink;
 	width: 150px;
 }
-td{border: 1px solid black;}
+td{
+
+}
+
 a {
 	margin: 10px auto;
 }
@@ -42,7 +45,12 @@ a {
 		</h1>
 		
 		<div align="right">
-			<a href="/mainpage">메인페이지</a> <a href="list">게시글로 이동</a> <a href="write">글 작성</a>
+			<a href="/mainpage">메인페이지</a> <a href="list">게시글로 이동</a> 
+			<sec:authorize access="hasAuthority('ROLE_ADMIN')">
+		        <a href="/manbd/write">새글등록</a>
+		      </sec:authorize>
+		  
+		    
 		</div>
 
 		<c:if test="${count != 0 }">
@@ -57,11 +65,11 @@ a {
 				</tr>
 				<c:forEach items="${bList}" var="managerbd">
 					<tr>
-						<td>${managerbd.manbd_no}</a></td>
+						<td>${managerbd.manbd_no}</td>
 						<td><a href ="content/${managerbd.manbd_no}">${managerbd.manbd_title}</a></td>
 						<td><fmt:formatDate value="${managerbd.manbd_regdate }" dateStyle="short"/> </td>
-						<td>${managerbd.manbd_div}</a></td>
-						<td>${managerbd.manbd_cinema}</a></td>
+						<td>${managerbd.manbd_div}</td>
+						<td>${managerbd.manbd_cinema}</td>
 					</tr>
 				</c:forEach>
 			</table>

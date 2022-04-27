@@ -19,6 +19,11 @@
 			
 		})//submit
 		
+		let areaList = ["서울", "경기", "인천", "대전/충청/세종", "부산/대구/경상", "광주/전라", "강원"];
+		for(let i in areaList){
+			$("#cine_area").append("<option value="+areaList[i]+" >"+areaList[i]+"</option>");
+		}//cine_area 설정
+		
 	})//ready
 	
 </script>
@@ -32,9 +37,7 @@
 					</tr>
 					<tr>
 						<td>지역</td>
-						<td><select id="cine_area" name="cine_area"><c:forEach items="${areaList}" var="list">
-							<option value="${list}">${list}</option>				
-						</c:forEach></select></td>
+						<td><select id="cine_area" name="cine_area"></select></td>
 					</tr>
 					<tr>
 						<td colspan=2><input type="submit" value="등록"></td>

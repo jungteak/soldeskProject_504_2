@@ -14,6 +14,9 @@ import movie.pro.manbd.dto.ManbdDto;
 public interface ManbdDao {
 	int insert(ManbdDto dto);
 	List<ManbdDto> boardList(Map<String, Object> m);
+	List<ManbdDto> noticeList(Map<String, Object> m);
+	List<ManbdDto> eventList(Map<String, Object> m);
+	
 	int count();//전체 글 갯수
 	ManbdDto boardOne(int no);
 	int updateBoard(ManbdDto dto);

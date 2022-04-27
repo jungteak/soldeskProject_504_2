@@ -12,4 +12,5 @@ public class ManbdDto {
 	private String manbd_div;
 	private String manbd_content;
 	private Date manbd_regdate;
+	
 }

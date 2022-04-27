@@ -78,18 +78,15 @@
 				</c:if>
 			</div>
 			<div align="right">
-				<sec:authorize access="isAuthenticated()">
-				<sec:authentication property="principal" var="user" />
-					<c:if test="${user.username!=null&&user.username!='admin'}">
+				<sec:authorize access="hasAuthority('ROLE_MEMBER')">
 						<button>내가 쓴 문의 글 조회</button>
-					</c:if>
-						<button id="write">새글 등록</button>
+						<button id="write">새 글 등록</button>
 				</sec:authorize>
 			</div>
 		</c:if>
 		<c:if test="${count == 0 }">
 			아직 입력한 글이 없습니다.
-			<sec:authorize access="isAuthenticated()">
+			<sec:authorize access="hasAuthority('ROLE_MEMBER')">
 				<button id="write">새글 등록</button>
 			</sec:authorize>
 		</c:if>

@@ -97,24 +97,27 @@
 			<tr><td>구분/극장</td><td>${dto.inqubd_div} / ${dto.inqubd_cinema}</td></tr>
 			<tr><td>내용</td><td>${dto.inqubd_content}</td></tr>
 			<tr><td>등록일</td><td><fmt:formatDate value="${dto.inqubd_regdate}" pattern="yy/MM/dd"/></td></tr>
-			<sec:authorize access="isAuthenticated()">
+			<sec:authorize access="hasAuthority('ROLE_ADMIN')">
+				<c:if test="${dto.inqubd_comm==null}">
+					<tr><td>답변</td><td><textarea id="inqubd_comm" name="inqubd_comm"></textarea></td><td><button id="input">등록</button></td></tr>
+				</c:if>
+				<c:if test="${dto.inqubd_comm!=null}">
+					<tr><td>답변</td><td>${dto.inqubd_comm}</td><td><button id="delComm">삭제</button></td></tr>
+				</c:if>
+				<tr><td colspan="2" align="right">
+					<button id="delBtn">글 삭제</button>
+				</td></tr>
+			</sec:authorize>
+			<sec:authorize access="hasAuthority('ROLE_MEMBER')">
 			<sec:authentication property="principal" var="user" />
-			<c:if test="${user.username=='admin'&& dto.inqubd_comm==null}">
-				<tr><td>답변</td><td><textarea id="inqubd_comm" name="inqubd_comm"></textarea></td><td><button id="input">등록</button></td></tr>
-			</c:if>
-			<c:if test="${user.username!='admin'&&dto.inqubd_comm!=null}">
+			<c:if test="${dto.inqubd_comm!=null}">
 				<tr><td>답변</td><td>${dto.inqubd_comm}</td></tr>
 				<tr><td>답변등록일</td><td><fmt:formatDate value="${dto.inqubd_comm_reg}" pattern="yy/MM/dd"/></td>
 			</c:if>
-			<c:if test="${user.username=='admin'&& dto.inqubd_comm!=null}">
-				<tr><td>답변</td><td>${dto.inqubd_comm}</td><td><button id="delComm">삭제</button></td></tr>
-			</c:if>
-			<c:if test="${user.username==dto.inqubd_id||user.username=='admin'}">
+			<c:if test="${user.username==dto.inqubd_id}">
 				<tr><td colspan="2" align="right">
-				<c:if test="${user.username!='admin'}">
 					<button id="updateBtn">글 수정</button>
-				</c:if>
-				<button id="delBtn">글 삭제</button>
+					<button id="delBtn">글 삭제</button>
 				</td></tr>
 			</c:if>
 			</sec:authorize>
@@ -156,8 +159,7 @@
 					<a href="../list?p=${end+1}">[다음]</a>
 				</c:if>
 			</div>
-			<sec:authorize access="isAuthenticated()">
-			<sec:authentication property="principal" var="user" />
+			<sec:authorize access="hasAuthority('ROLE_MEMBER')">
 				<div align="right">
 					<button id="write">새글 등록</button>
 				</div>
