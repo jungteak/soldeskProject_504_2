@@ -5,12 +5,27 @@
 <head>
 <title>글 수정</title>
 <style>
-	.pink{background-color: pink; width: 50px;}
-	.red{background-color: red; width: 50px;}
-	table{border-collapse : collapse; width: 800px;}
+	.pink{background-color: #8DA9EA; width: 34px; height: 1.5rem;}
+	
+	table{border-collapse : collapse; width: 1450px;
+	margin-left: auto;
+	margin-right: auto;
+	border-right:1px solid white;
+	}
+	
+	#save {  /*--검색버튼 설정--*/
+	border: 1x solid #ff0080; /*---테두리 정의---*/
+	background-Color: #ffe6f2; /*--백그라운드 정의---*/
+	font: 15px 굴림; /*--폰트 정의---*/
+	font-weight: bold; /*--폰트 굵기---*/
+	color: #ff0080; /*--폰트 색깔---*/
+	width: 130;
+	height: 30; /*--버튼 크기---*/
+	}
 </style>
 </head>
 <body>
+<h1>공지사항/이벤트 (글수정)</h1>
 <form method="post" id="updateform" action="/manbd/update" >
 <input type="hidden" name="_method" value="put">
 	<table border="1">

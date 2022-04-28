@@ -4,55 +4,128 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
+<title>글 세부내용</title>
 <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <style>
-table {
-	text-align: center;
+#center {   /*---처음부터 페이지 넘버 아래까지 / 검색창 위까지---*/
+	width: 1400px;
 	margin-left: auto;
-	margin-right: auto; 
+	margin-right: auto;
 }
-div{
+
+h1 {		/*---게시글목록(타이핑)---*/
+	text-align: left;
+	color : #d717e8
+}
+h2 {		/*---게시글목록(타이핑)---*/
+	text-align: left;
+	font : 15px;
+}
+
+table {    /*---표 부분---*/
+	border: 1px solid black;
+	width: 1400px;
+	border-collapse: collapse;
 	text-align: center;
-	
-}
-h1{
-  color:CORAL; // 종 색상
+	margin: 10px auto;
 }
 
-</style>
+tr {   /*---표 전체(디자인 설정)---*/
+	padding: 60px;
+	max-width: 650px;
+	background: #80d5a6;
+	box-shadow: 0 0 0 0px #226741, 0 0 0 0px #fff, inset 0 0 0 0px #226741,
+		0 5px 10px 0px rgba(0, 0, 0, 0.5), inset 0 0 0 0px #fff, inset 0 0
+		100vw 100vw beige;
+	font-family: Marcellus, serif;
+	font-size: 15px;
+	text-align: center;
+}
+
+th {	/*---표 제목부분(글번호/제목/공지/극장/등록일)---*/
+	background-color: #8DA9EA;
+	width: 150px;
+	height: 1.5rem;
+}
+
+td {		/*---표 개개인 글 줄높이 설정---*/
+	height: 2.5rem;
+}
+
+td>a { /*--제목(링크)부분 밑줄제거, 글자 색상--*/
+	text-decoration: none;
+	color: black;
+}
+
+td>a:hover { /*--제목(링크)부분 마우스 올릴시(hover) 밑줄표시--*/
+	text-decoration: underline;
+}
+
+a {  /*---새글등록(주소 이동하는 애들)---*/
+	margin: 10px auto;
+	color : #2fa4c2;
+}
+
+.container { /*---목록부터 표까지(위치 지정)---*/
+	width: -800px;
+	margin: 0 auto;
+}
+
+ul.tabs {	/*---목록전체(전체/공지사항/이벤트)---*/
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+ul.tabs li { /*---전체/공지사항/이벤트 각각---*/
+	background: none;
+	color: #222;
+	display: inline-block;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+
+ul.tabs li.current { /*---전체/공지사항/이벤트 각각---*/
+	background: #ededed;
+	color: #222;
+}
+
+.tab-content { /*---공지사항,이벤트(2,3번 탭)---*/
+	display: none;
+	background: #ededed;
+	padding: 15px;
+}
+
+.tab-content.current {	/*---전체(1번 탭)--*/
+	display: inherit;
+}
+
+#page {		/*--- 페이지숫자, 이전/다음---*/
+	text-align: center;
+	color : red;
+}
+
+.button  {  /*--검색버튼 설정--*/
+	border: 1x solid #ff0080; /*---테두리 정의---*/
+	background-Color: #ffe6f2; /*--백그라운드 정의---*/
+	font: 12px 굴림; /*--폰트 정의---*/
+	font-weight: bold; /*--폰트 굵기---*/
+	color: #ff0080; /*--폰트 색깔---*/
+	width: 130;
+	height: 30; /*--버튼 크기---*/
+}
+#top{
+padding : 10px;
+}
+#main{
+  
+}
+
+</style>	
 <body>
-	<table border="1">
-	<tr><td>제목</td><td>${dto.manbd_title}</td>
-	<tr><td>내용</td><td>${dto.manbd_content}</td>
-	<tr><td>등록일</td><td><fmt:formatDate value="${dto.manbd_regdate}" dateStyle="long"/></td>
-	<tr><td>공지사항/이벤트</td><td>${dto.manbd_div}</td>
-	<tr><td>극장</td><td>${dto.manbd_cinema}</td>
- <span style="font-size: 3em; color: Tomato;">
-    <i class="fas fa-camera"></i>
-    <i class="fa-solid fa-arrow-rotate-left"></i>
-  </span>
-
-  <span style="font-size: 48px; color: Dodgerblue;">
-    <i class="fas fa-camera"></i>
-  </span>
-
-  <span style="font-size: 3rem;">
-    <span style="color: Mediumslateblue;">
-    <i class="fas fa-camera"></i>
-    </span>
-  </span> 
-	</table>	
-	
-	<table>
-	<div>
-  <h1>
-  <span style= color:red >
-   <i class="fas fa-bell"></i> 
-  </h1>
-</div>
-	<div> 
+	<div id = "top" align="right" > 
 		<sec:authorize access="hasAuthority('ROLE_ADMIN')">
 		        <a href="/manbd/update/${dto.manbd_no}">글 수정</a>
 		        <a id="${dto.manbd_no}" href="#">글 삭제</a>
@@ -60,11 +133,27 @@ h1{
 		      
 		      <a href="/../manbd/list">게시글로 이동</a>
 	</div>
-	</table>
+	
+<h1>공지사항</h1>
+<h2>${dto.manbd_title}</h2>
+<div id = "main">
+	<br>
+	<hr> 
+	${dto.manbd_div} ${dto.manbd_cinema} 
+	<hr> 
+	등록일 <fmt:formatDate value="${dto.manbd_regdate}" />
+	<hr>
+	<br>
+	 ${dto.manbd_content}
+	<br>
+	 <hr>
+	</div>
+	
 	
 	
 	<c:if test="${count != 0 }">
 		<table>
+			<br>
 				<tr>
 					<th>글번호</th>
 					<th>제목</th>
@@ -81,7 +170,8 @@ h1{
 						<td>${managerbd.manbd_cinema}</td>
 					</tr>
 				</c:forEach>
-			</table>
+		
+		</table>
 
 
 		<div id="page">
@@ -110,7 +200,7 @@ h1{
 <option value="2">극장</option>
 </select>
 <input type="text" name="search" size="15" maxlength="50" /> 
-<input type="submit" value="검색" />
+<input type="submit" value="검색" class="button"/>
 </form>	
 </div>
 

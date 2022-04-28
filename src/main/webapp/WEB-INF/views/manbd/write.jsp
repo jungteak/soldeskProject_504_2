@@ -5,17 +5,35 @@
 <head>
 <title>글쓰기</title>
 <style>
-	.pink{background-color: pink ; width: 50px;}
-	table{border-collapse : collapse; width: 800px;}
+	.pink{background-color: #8DA9EA; width: 34px; height: 1.5rem;}
+	
+	table{border-collapse : collapse; width: 1450px;
+	margin-left: auto;
+	margin-right: auto;
+	border-right:1px solid white;
+	}
+	
+	#save {  /*--검색버튼 설정--*/
+	border: 1x solid #ff0080; /*---테두리 정의---*/
+	background-Color: #ffe6f2; /*--백그라운드 정의---*/
+	font: 15px 굴림; /*--폰트 정의---*/
+	font-weight: bold; /*--폰트 굵기---*/
+	color: #ff0080; /*--폰트 색깔---*/
+	width: 130;
+	height: 30; /*--버튼 크기---*/
+	}
+	
 </style>
 </head>
 <body>
+<h1>공지사항/이벤트 (글작성)</h1>
 <form method="post" id="writeform">
 	<table border="1">
 		<tr>  
 			<td class="pink">제목</td>
 			<td><input name="manbd_title"/></td>
 		</tr>
+		
 		<tr>
 			<td class="pink">구분</td>
 			<td><select name="manbd_div">
@@ -23,6 +41,7 @@
 				<option value="공지사항">공지사항</option>
 			</select></td>
 		</tr>
+		
 		<tr>
 			<td class="pink">극장</td>
 			<td><select name="manbd_cinema">
@@ -32,15 +51,17 @@
 			</c:forEach>		
 			</select></td>
 		</tr>
+		
 		<tr>
 			<td class="pink">내용</td>
 			<td>
         	<textarea id="test" name="manbd_content"
                   rows="20" cols="10" 
                   placeholder="내용을 입력해주세요"
-                  style="width: 700px"></textarea>
+                  style="width: 100%"></textarea>
      		</td>
 		</tr>
+		
 		<tr>
 			<td colspan="2" align="center">
 				<input type="submit" id="save" value="새글 등록"> 
