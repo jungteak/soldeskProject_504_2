@@ -118,6 +118,45 @@ public class MemberController {
 		
 	}//pwCheck
 	
+	@GetMapping("/updateMember")
+	public String updateForm(@AuthenticationPrincipal SecurityUser principal, Model m) {
+		m.addAttribute("dto", principal.getDto());
+		return "mypage/updateForm";
+		
+		}
+	
+	
+	@PostMapping("/updateMember")
+	public String updateMember(MemberDto dto, @AuthenticationPrincipal SecurityUser principal,Model m) {
+			MemberDto mem = principal.getDto(); //세션에 있는 아이디값을 ()_mem에 넣어주고
+			dto.setMem_id(mem.getMem_id()); //()_mem에 memid가져와주고
+			service.updateMember(dto);
+			m.addAttribute("dto", dto);
+			return "mypage/updateForm";
+		}
+
+	@GetMapping("/delete")
+	public String deleteform(MemberDto dto, @AuthenticationPrincipal SecurityUser principal) {
+		return "mypage/deleteForm";
+	}
+
+	@GetMapping("/delete/wrongpw")
+	public String deleteformError(Model m) {
+		m.addAttribute("error", "비밀번호 틀림");
+		return "mypage/deleteForm";
+	}
+
+	@DeleteMapping("/delete")
+	public String delete(String mem_pw, MemberDto dto, SessionStatus status) {
+
+		int i = service.deleteMember(mem_pw, dto);
+		if (i == 0) {
+			return "redirect:/delete/wrongpw";
+		} else {
+			status.setComplete();
+			return "redirect:/main";
+		}
+	}
 	
 	
 }

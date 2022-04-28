@@ -79,4 +79,20 @@ public class MemberService {
 		
 	}//findPw
 	
+	public int updateMember(MemberDto dto) {
+		dto.setMem_pw(encoder.encode(dto.getMem_pw()));	
+		return dao.updateMember(dto);
+	}
+	
+	public int deleteMember(String mem_pw, MemberDto dto ) {
+		String pw = encoder.encode(mem_pw);
+		
+		if(pw.equals(mem_pw)) {
+			return dao.deleteMember(dto.getMem_id());
+		}else {
+			return 0;
+		}
+	}
+	
+	
 }
