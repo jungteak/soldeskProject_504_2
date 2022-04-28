@@ -146,6 +146,7 @@ padding : 10px;
 	<br>
 	 ${dto.manbd_content}
 	<br>
+	<br>
 	 <hr>
 	</div>
 	
