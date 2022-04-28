@@ -27,8 +27,6 @@ public class ManbdService {
 		m.put("end", end);
 		return dao.boardList(m);
 	}
-	
-	
 public List<ManbdDto> noticeList(int start, int end){
 		
 		Map<String, Object> m = new HashMap<String, Object>();

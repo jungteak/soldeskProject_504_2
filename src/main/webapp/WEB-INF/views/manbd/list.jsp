@@ -114,37 +114,31 @@ ul.tabs li.current { /*---전체/공지사항/이벤트 각각---*/
 	width: 130;
 	height: 30; /*--버튼 크기---*/
 }
-
-#top{
-padding : 10px;
-}
-
 </style>
 </head>
 
 
 <body>
-	<div id = "top" align="right">
-			<sec:authorize access="hasAuthority('ROLE_ADMIN')">
-				<a href="/manbd/write" class="write">새글등록</a>
-			</sec:authorize>
-		</div>
-
-
 	<div id="center">
 		<h1 >게시글 목록</h1>
 		<marquee loop="2" direction="left" bgcolor="gold" behavior="slide">영화관의
 			주요한 이슈 및 여러가지 소식들을 확인하실 수 있습니다.</marquee> 
 
+		<div align="right">
+			<sec:authorize access="hasAuthority('ROLE_ADMIN')">
+				<a href="/manbd/write" class="write">새글등록</a>
+			</sec:authorize>
+		</div>
+
 		<c:if test="${count != 0 }"> <%--이거 위치 모르겠다.. --%>
 
-			<div class="container">
-				<ul class="tabs">
-					<li class="tab-link current" data-tab="tab-1">전체</li>
-					<li class="tab-link" data-tab="tab-2">공지사항</li>
-					<li class="tab-link" data-tab="tab-3">이벤트</li>
-				</ul>
+	<div class="container">
 
+	<ul class="tabs">
+		<li class="tab-link current" data-tab="tab-1">전체</li>
+		<li class="tab-link" data-tab="tab-2">공지사항</li>
+		<li class="tab-link" data-tab="tab-3">이벤트</li>
+		</ul>
 				<br>
 				
 			<div id="tab-1" class="tab-content current">
@@ -219,19 +213,19 @@ padding : 10px;
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 					<script>
-						$(document).ready(function() {
+					$(document).ready(function(){
+						
+						$('ul.tabs li').click(function(){
+							var tab_id = $(this).attr('data-tab');
 
-							$('ul.tabs li').click(function() {
-								var tab_id = $(this).attr('data-tab');
+							$('ul.tabs li').removeClass('current');
+							$('.tab-content').removeClass('current');
 
-								$('ul.tabs li').removeClass('current');
-								$('.tab-content').removeClass('current');
-
-								$(this).addClass('current');
-								$("#" + tab_id).addClass('current');
-							})
-
+							$(this).addClass('current');
+							$("#"+tab_id).addClass('current');
 						})
+
+					})
 					</script>
 
 	<br>

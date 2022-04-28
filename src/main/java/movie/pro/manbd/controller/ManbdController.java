@@ -64,14 +64,12 @@ public class ManbdController {
 		
 		List<ManbdDto> boardList = service.boardList(startRow, endRow);
 		m.addAttribute("bList", boardList);
-		
+
 		List<ManbdDto> noticeList = service.noticeList(startRow, endRow);
 		m.addAttribute("nList", noticeList);
 
 		List<ManbdDto> eventList = service.eventList(startRow, endRow);
 		m.addAttribute("eList", eventList);
-
-
 		
 		int pageNum = 5;
 		int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0); //전체 페이지 수
