@@ -31,6 +31,6 @@
 </update>
 
 <delete id="deleteMember" parameterType="movie.pro.member.dto.MemberDto" >
-	delete 	from member where mem_pw = #{mem_pw}
+	delete from member where mem_pw = #{mem_pw}
 </delete>
 </mapper>

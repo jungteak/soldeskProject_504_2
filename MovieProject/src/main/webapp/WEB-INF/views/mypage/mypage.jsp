@@ -6,8 +6,9 @@
 <head>
 <title>마이페이지</title>
 <link href="/css/mypage.css" rel="stylesheet">
-<style>
+<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
+<style>
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -49,7 +50,8 @@
 					<ul class="menu">
 						<li><a href="/updateMember">내 정보 확인 / 수정</a></li>
 						<li><a href="/mytkList">예매 확인 / 취소</a></li>
-						<li><a href="/myboardList">내 활동내역</a></li>
+						<li><a href="/myboardList">내가쓴글</a></li>
+						<li><a href="/deleteMember">회원탈퇴</a></li>
 					</ul>
 				</div>
 		</div>

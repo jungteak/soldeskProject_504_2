@@ -12,7 +12,10 @@
 </head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
 <style>
+.table-hover
 </style>
 <body>
 	<div id="container">
@@ -20,38 +23,39 @@
 			<sec:authorize access="isAuthenticated()">
 				<sec:authentication property="principal" var="user" />
 				<c:if test="${dto.tk_id==dto.tk_id}">
-				<a>${user.username}님의 예매 내역</a>
-					<table class="table">
-						<thead>
-							<tr>
-								<th>예매번호</th>
-								<th>영화제목</th>
-								<th>극장이름</th>
-								<th>상영관</th>
-								<th>상영시간</th>
-								<th>티켓자리</th>
-								<th>성인</th>
-								<th>청소년</th>
-								<th>구매금액</th>
-								<th>결제시간</th>
-							</tr>
-						</thead>
-
-						<c:forEach items="${list}" var="dto">
-							<tr>
-								<td><a href="../../ticket/ticketPage/${dto.tk_no}">${dto.tk_no}</a></td>
-								<td>${dto.mov_title}</td>
-								<td>${dto.cine_name}</td>
-								<td>${dto.th_no}</td>
-								<td><fmt:formatDate pattern="yy-mm-dd" value="${dto.show_date}"/></td>
-								<td>${dto.tk_seat}</td>
-								<td>${dto.tk_a}</td>
-								<td>${dto.tk_c}</td>
-								<td>${dto.tk_pay}</td>
-								<td><fmt:formatDate pattern="yy-mm-dd" value="${dto.tk_pay_time}"/></td>
-							</tr>
-						</c:forEach>
-					</table>
+					<tbody>
+						<table class="table table-hover" "table table-sm">
+								<tr>
+									<th>티켓번호</th>
+									<th>영화제목</th>
+									<th>영화관</th>
+									<th>상영관</th>
+									<th>상영시간</th>
+									<th>좌석</th>
+									<th>성인</th>
+									<th>청소년</th>
+									<th>구매금액</th>
+									<th>결제날짜</th>
+								</tr>
+								<c:forEach items="${list}" var="dto">
+									<tr>
+										<td><a href="../../ticket/ticketPage/${dto.tk_no}">${dto.tk_no}</a></td>
+										<td>${dto.mov_title}</td>
+										<td>${dto.cine_name}</td>
+										<td>${dto.th_no}</td>
+										<td><fmt:formatDate pattern="yy-MM-dd"
+												value="${dto.show_date}" /></td>
+										<td>${dto.tk_seat}</td>
+										<td>${dto.tk_a}</td>
+										<td>${dto.tk_c}</td>
+										<td>${dto.tk_pay}</td>
+										<td><fmt:formatDate pattern="yy-MM-dd"
+												value="${dto.tk_pay_time}" /></td>
+									</tr>
+								</c:forEach>
+								
+						</table>
+					<tbody>
 				</c:if>
 			</sec:authorize>
 		</div>

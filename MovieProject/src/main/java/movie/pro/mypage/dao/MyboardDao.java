@@ -10,7 +10,7 @@ import movie.pro.mypage.dto.MyboardDto;
 @Mapper
 public interface MyboardDao {
 	
-	List<MyboardDto> myboardList(Map<String, Object> m);//내글목록
+	List<MyboardDto> myboardList(String movbd_id/* Map<String, Object> m */);//내글목록
 	
 	int countmyBd();//전체 글 갯수
 

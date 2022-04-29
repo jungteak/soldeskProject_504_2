@@ -3,13 +3,14 @@
 <mapper namespace="movie.pro.mypage.dao.MyboardDao">
 
 <!-- 내가쓴글 목록 -->
-<select id="myboardList" parameterType="map" resultType="movie.pro.mypage.dto.MyboardDto"> 
-	select *
-	from movbd
+<select id="myboardList" parameterType="String" resultType="movie.pro.mypage.dto.MyboardDto"> 
+	select * from movbd 
 	where movbd_id=#{movbd_id}
 	order by movbd_no DESC
 </select>
 
-<select id="count" resultType="int"> select count(*) from movbd </select>
+<select id="countmyBd" resultType="int">
+	select MOVBD_READCOUNT from movbd 
+</select>
 
 </mapper>

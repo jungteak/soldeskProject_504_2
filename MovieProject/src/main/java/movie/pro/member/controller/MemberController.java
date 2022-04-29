@@ -139,23 +139,24 @@ public class MemberController {
 			return "mypage/updateForm";
 		}
 
-	@GetMapping("/delete")
-	public String deleteform(MemberDto dto, @AuthenticationPrincipal SecurityUser principal) {
+	@GetMapping("/deleteMember")
+	public String deleteform(String mem_pw, MemberDto dto, @AuthenticationPrincipal SecurityUser user, Model m) {
+		m.addAttribute("mem_pw", mem_pw);
 		return "mypage/deleteForm";
 	}
 
-	@GetMapping("/delete/wrongpw")
+	@GetMapping("/deleteMember/wrongpw")
 	public String deleteformError(Model m) {
 		m.addAttribute("error", "비밀번호 틀림");
 		return "mypage/deleteForm";
 	}
 
-	@DeleteMapping("/delete")
-	public String delete(String mem_pw, MemberDto dto, SessionStatus status) {
-
-		int i = service.deleteMember(mem_pw, dto);
+	@DeleteMapping("/deleteMember")
+	public String delete(String mem_pw, MemberDto dto,@AuthenticationPrincipal SecurityUser principal, SessionStatus status) {
+		MemberDto mem = principal.getDto();
+		int i = service.deleteMember(mem_pw, mem);
 		if (i == 0) {
-			return "redirect:/delete/wrongpw";
+			return "redirect:/deleteMember/wrongpw";
 		} else {
 			status.setComplete();
 			return "redirect:/main";

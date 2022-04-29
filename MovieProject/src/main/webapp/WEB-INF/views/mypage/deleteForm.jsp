@@ -27,32 +27,34 @@
 <body>
 	<div id="container">
 		<div id="body">
-			<sec:authorize access="isAuthenticated()">
-				<sec:authentication property="principal" var="user" />
-				<form method="post" onsubmit="return checkVal()" action="delete">
-					<div class="form-group">
-						<div class="exMsg">
-							<h3>회원 탈퇴하려면 비밀번호를 입력해주세요</h3>
+			<div class="registration-form">
+				<sec:authorize access="isAuthenticated()">
+					<sec:authentication property="principal" var="user" />
+					<form method="post" onsubmit="return checkVal()" action="deleteMember">
+						<div class="form-group">
+							<div class="exMsg">
+								<h3>회원 탈퇴하려면 비밀번호를 입력해주세요</h3>
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<input type="hidden" name="_method" value="delete">
-						<div class="title">
-							<h5>비밀번호</h5>
+						<div class="form-group">
+							<input type="hidden" name="_method" value="delete">
+							<div class="title">
+								<h5>비밀번호</h5>
+							</div>
+							<input class="form-control item" id="password" name="mem_pw"
+								type="password">${error}
+							<button type="submit" value="탈퇴">회원탈퇴</button>
 						</div>
-						<input class="form-control item" id="password" name="mem_pw"
-							type="password">${error}
-						<button type="submit" value="탈퇴">회원탈퇴</button>					
-					</div>
-				</form>
-			</sec:authorize>
+					</form>
+				</sec:authorize>
+			</div>
 		</div>
 	</div>
 
 	<script>
 		function checkVal() {
-			let pw = document.querySelector("#password").value;
-			if (!pw) {
+			let mem_pw = document.querySelector("#mem_pw").value;
+			if (!mem_pw) {
 				alert("비밀번호 입력하세요");
 				return false;
 			}
