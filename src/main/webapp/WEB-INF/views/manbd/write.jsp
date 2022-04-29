@@ -68,9 +68,14 @@
 			<td class="pink">극장</td>
 		<td>
 		
-	
+	<select name="manbd_cinema">
+				<option value="전체">전체</option>
+			<c:forEach items="${cList}" var="cinema">
+				<option value="${cinema.cine_area}">${cinema.cine_area}</option>
+			</c:forEach>		
+			</select>
 		
-		<select name="manbd_cinema">
+	<select name="manbd_cinema">
 				<option value="전체">전체</option>
 			<c:forEach items="${cList}" var="cinema">
 				<option value="${cinema.cine_name}">${cinema.cine_name}</option>

@@ -237,7 +237,7 @@ a {
 	$(function(){
 		
 	
-	})//ready
+	})//ready 아이콘 클릭시 메인페이지로 이동(모든페이지에 추가할것)
 	
 </script>
 </head>
@@ -259,6 +259,7 @@ a {
 		<div id="logoImg" align="center">
 			<img id="logo" onclick="gotoMain()" src="/images/logo.JPG">
 		</div>
+		
 		<nav class="menu">
 			<ol>
 		      <li class="menu-item">
