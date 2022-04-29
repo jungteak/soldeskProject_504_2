@@ -20,6 +20,15 @@ public class ManbdService {
 		return dao.count();
 	}
 	
+	public int countn() {
+		return dao.countn();
+	}
+	
+	public int counte() {
+		return dao.counte();
+	}
+	
+	
 	public List<ManbdDto> boardList(int start, int end){
 		
 		Map<String, Object> m = new HashMap<String, Object>();

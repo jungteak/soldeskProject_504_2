@@ -46,6 +46,9 @@ update managerbd set manbd_title = #{manbd_title}, manbd_div = #{manbd_div}, man
 </select>
 
 <select id="count" resultType="int"> select count(*) from managerbd </select>
+<select id="countn" resultType="int"> select count(*) from managerbd where manbd_div ='공지사항'</select>
+<select id="counte" resultType="int"> select count(*) from managerbd where manbd_div = '이벤트' </select>
+
 <select parameterType="int" id="boardOne" resultType="movie.pro.manbd.dto.ManbdDto"> 
 select * from managerbd where manbd_no = #{manbd_no} </select>
 

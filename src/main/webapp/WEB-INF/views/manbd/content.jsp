@@ -125,15 +125,6 @@ padding : 10px;
 
 </style>	
 <body>
-	<div id = "top" align="right" > 
-		<sec:authorize access="hasAuthority('ROLE_ADMIN')">
-		        <a href="/manbd/update/${dto.manbd_no}">글 수정</a>
-		        <a id="${dto.manbd_no}" href="#">글 삭제</a>
-		      </sec:authorize>
-		      
-		      <a href="/../manbd/list">게시글로 이동</a>
-	</div>
-	
 <h1>공지사항</h1>
 <h2>${dto.manbd_title}</h2>
 <div id = "main">
@@ -158,17 +149,17 @@ padding : 10px;
 				<tr>
 					<th>글번호</th>
 					<th>제목</th>
-					<th>등록일</th>
 					<th>공지사항/이벤트</th>
 					<th>극장</th>
+					<th>등록일</th>
 				</tr>
 				<c:forEach items="${bList}" var="managerbd">
 					<tr>
 						<td>${managerbd.manbd_no}</td>
 						<td><a href ="${managerbd.manbd_no}">${managerbd.manbd_title}</a></td>
-						<td><fmt:formatDate value="${managerbd.manbd_regdate }" dateStyle="short"/></td>
 						<td>${managerbd.manbd_div}</td>
 						<td>${managerbd.manbd_cinema}</td>
+						<td><fmt:formatDate value="${managerbd.manbd_regdate }" dateStyle="short"/></td>
 					</tr>
 				</c:forEach>
 		
@@ -238,5 +229,13 @@ padding : 10px;
 	})//ready
 
 </script>
+<div id = "top" align="right" > 
+		<sec:authorize access="hasAuthority('ROLE_ADMIN')">
+		        <a href="/manbd/update/${dto.manbd_no}">글 수정</a>
+		        <a id="${dto.manbd_no}" href="#">글 삭제</a>
+		      </sec:authorize>
+		      
+		      <a href="/../manbd/list">게시글로 이동</a>
+	</div>
 </body>
 </html>

@@ -92,8 +92,6 @@ ul.tabs li.current { /*---전체/공지사항/이벤트 각각---*/
 
 .tab-content { /*---공지사항,이벤트(2,3번 탭)---*/
 	display: none;
-	background: #ededed;
-	padding: 15px;
 }
 
 .tab-content.current {	/*---전체(1번 탭)--*/
@@ -102,7 +100,6 @@ ul.tabs li.current { /*---전체/공지사항/이벤트 각각---*/
 
 #page {		/*--- 페이지숫자, 이전/다음---*/
 	text-align: center;
-	color : red;
 }
 
 .button  {  /*--검색버튼 설정--*/
@@ -114,19 +111,15 @@ ul.tabs li.current { /*---전체/공지사항/이벤트 각각---*/
 	width: 130;
 	height: 30; /*--버튼 크기---*/
 }
-#top{
-padding : 10px;
+
+
 </style>
 </head>
 
 
 <body>
 
-<div id=top align="right">
-			<sec:authorize access="hasAuthority('ROLE_ADMIN')">
-				<a href="/manbd/write" class="write">새글등록</a>
-			</sec:authorize>
-		</div>
+
 
 	<div id="center">
 		<h1 >게시글 목록</h1>
@@ -166,6 +159,22 @@ padding : 10px;
 							</tr>
 				</c:forEach>
 				</table>
+				
+				
+				<br>
+				
+				
+				<div id="page">
+					<c:if test="${begin > pageNum }">
+						<a href="list?p=${begin-1 }&t=1">[이전]</a>
+					</c:if>
+					<c:forEach begin="${begin }" end="${end}" var="i">
+						<a href="list?p=${i}&t=1">${i}</a>
+					</c:forEach>
+					<c:if test="${end < totalPages }">
+					<%--  test="${count == 0 } --%>	<a href="list?p=${end+1}&t=1">[다음]</a>
+					</c:if>
+				</div>
 			</div>
 
 			<div id="tab-2" class="tab-content">
@@ -189,7 +198,23 @@ padding : 10px;
 					</tr>
 				</c:forEach>
 				</table>
-			</div>
+				
+				<br>
+				
+				<div id="page">
+					<c:if test="${beginn > pageNum }">
+						<a href="list?p=${beginn-1 }&t=2">[이전]</a>
+					</c:if>
+					<c:forEach begin="${beginn }" end="${endn}" var="i">
+						<a href="list?p=${i}&t=2">${i}</a>
+					</c:forEach>
+					<c:if test="${endn < totalPagesn }">
+					 <%-- test="${count == 0 } --%>	<a href="list?p=${end+1}&t=2">[다음]</a>
+					</c:if>
+				</div>
+				</div>
+				
+	<br>
 
 			<div id="tab-3" class="tab-content">
 				<table>
@@ -212,13 +237,39 @@ padding : 10px;
 					</tr>
 				</c:forEach>
 				</table>
+				
+				<br>
+				
+				<div id="page">
+					<c:if test="${begine > pageNum }">
+						<a href="list?p=${begine-1 }&t=3">[이전]</a>
+					</c:if>
+					<c:forEach begin="${begine }" end="${ende}" var="i">
+						<a href="list?p=${i}&t=3">${i}</a>
+					</c:forEach>
+					<c:if test="${ende < totalPagese }">
+					 <%-- test="${count == 0 } --%>	<a href="list?p=${ende+1}&t=3">[다음]</a>
+					</c:if>
+				</div>
+				<br>
 			</div>
 	</div><%--class="container" 끝! --%>
-
+	
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 					<script>
 					$(document).ready(function(){
 						
+						$('ul.tabs li').removeClass('current');
+						$('.tab-content').removeClass('current');
+						//현재 보여질 탭이 아니다(감추준 상태 none)
+						
+						let tab = 'ul.tabs li[data-tab="tab-'+${t}+ '"]'; //현재보여질 탭(주소?) 셀렉터
+						let t_name = "tab-"+${t}; //테이블 보여질 탭(주소) 셀럭터
+						$(tab).addClass('current'); //
+						$("#"+t_name).addClass('current');
+						//
+						
+						//밑에는 클릭이벤트 실행시 작동
 						$('ul.tabs li').click(function(){
 							var tab_id = $(this).attr('data-tab');
 
@@ -231,28 +282,13 @@ padding : 10px;
 
 					})
 					</script>
-
-	<br>
-				
-				<div id="page">
-					<c:if test="${begin > pageNum }">
-						<a href="list?p=${begin-1 }">[이전]</a>
-					</c:if>
-					<c:forEach begin="${begin }" end="${end}" var="i">
-						<a href="list?p=${i}">${i}</a>
-					</c:forEach>
-					<c:if test="${end < totalPages }">
-				f test="${count == 0 }	<a href="list?p=${end+1}">[다음]</a>
-					</c:if>
-				</div>
-		</c:if>
+					
+</c:if>
 <c:if test="${count == 0 }">
 아직 입력한 글이 없습니다.
 </c:if>
 	</div> <%-- id="center 끝! --%>
-	
-	<br>
-	
+
 	<div id="search" align="center">
 		<form action="search">
 			<select name="searchn">
@@ -264,6 +300,14 @@ padding : 10px;
 			<input type="submit" value="검색" class="button" />
 		</form>
 	</div>
+	<div class= "write" align="right">
+	<sec:authorize access="hasAuthority('ROLE_ADMIN')">
+				<a href="/manbd/write" >새글등록</a>
+			</sec:authorize>
+	</div>
+		<br>
+	
+
 
 </body>
 </html>

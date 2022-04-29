@@ -68,12 +68,7 @@
 			<td class="pink">극장</td>
 		<td>
 		
-		<select name="manbd_cinema">
-				<option value="전체">전체</option>
-			<c:forEach items="${cList}" var="cinema">
-				<option value="${cinema.cine_area}">${cinema.cine_area}</option>
-			</c:forEach>		
-			</select>
+	
 		
 		<select name="manbd_cinema">
 				<option value="전체">전체</option>
@@ -97,7 +92,7 @@
         	<textarea id="test" name="manbd_content"
                   rows="20" cols="10" 
                   placeholder="내용을 입력해주세요"
-                  style="width: 100%"></textarea>
+                  style="width: 100%"></textarea>	
      		</td>
 		</tr>
 		

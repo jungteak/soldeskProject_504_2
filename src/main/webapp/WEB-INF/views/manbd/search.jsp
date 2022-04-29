@@ -21,12 +21,6 @@ table {    /*---표 부분---*/
 	text-align: center;
 }
 
-th {	/*---표 제목부분(글번호/제목/공지/극장/등록일)---*/
-	background-color: #8DA9EA;
-	width: 150px;
-	height: 1.5rem;
-}
-
 tr {   /*---표 전체(디자인 설정)---*/
 	padding: 60px;
 	max-width: 650px;
@@ -37,6 +31,17 @@ tr {   /*---표 전체(디자인 설정)---*/
 	font-family: Marcellus, serif;
 	font-size: 15px;
 	text-align: center;
+
+}
+th {	/*---표 제목부분(글번호/제목/공지/극장/등록일)---*/
+	background-color: #8DA9EA;
+	width: 150px;
+	height: 1.5rem;
+}
+
+
+td {		/*---표 개개인 글 줄높이 설정---*/
+	height: 2.5rem;
 }
 
 td>a { /*--제목(링크)부분 밑줄제거, 글자 색상--*/
@@ -58,17 +63,18 @@ padding : 10px;
 #page {
 	text-align: center;
 }
+.button  {  /*--검색버튼 설정--*/
+	border: 1x solid #ff0080; /*---테두리 정의---*/
+	background-Color: #ffe6f2; /*--백그라운드 정의---*/
+	font: 12px 굴림; /*--폰트 정의---*/
+	font-weight: bold; /*--폰트 굵기---*/
+	color: #ff0080; /*--폰트 색깔---*/
+	width: 130;
+	height: 30; /*--버튼 크기---*/
+}
 </style>
 </head>
 <body>
-		<div id = "top" align="right">
-			<a href="/mainpage">메인페이지</a> <a href="list">게시글로 이동</a> 
-			<sec:authorize access="hasAuthority('ROLE_ADMIN')">
-		        <a href="/manbd/write">새글등록</a>
-		      </sec:authorize>
-		</div>
-
-
 	<div id="center">
 		<h1>${search}로 검색한 결과입니다. <c:if test="${searchn==0}">(제목)  </c:if>
 		<c:if test="${searchn==1}">(내용)  </c:if>
@@ -94,6 +100,10 @@ padding : 10px;
 					</tr>
 				</c:forEach>
 			</table>
+			
+			<br>
+			
+			
 			<div id="page">
 				<c:if test="${begin > pageNum }">
 					<a href="search?p=${begin-1}&search=${search}&searchn=${searchn}">[이전]</a>
@@ -109,6 +119,7 @@ padding : 10px;
 		<c:if test="${count == 0 }">
 	검색 조건에 맞는 글이 없습니다.
 </c:if>
+<br>
 <div id="search" align="center">
 <form action="search">
 <select name="searchn">
@@ -117,10 +128,17 @@ padding : 10px;
 <option value="2">극장</option>
 </select>
 <input type="text" name="search" size="15" maxlength="50" /> 
-<input type="submit" value="검색" />
+<input type="submit" value="검색" class="button" />
 </form>	
 	</div>
 	</div>
+	
+	<div id = "top" align="right">
+			<a href="/mainpage">메인페이지</a> <a href="list">게시글로 이동</a> 
+			<sec:authorize access="hasAuthority('ROLE_ADMIN')">
+		        <a href="/manbd/write">새글등록</a>
+		      </sec:authorize>
+		</div>
 </body>
 </html>
 

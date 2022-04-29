@@ -59,7 +59,7 @@
 			<td><div id="smarteditor">
         	<textarea name="manbd_content" id="editorTxt" 
                   rows="20" cols="10" 
-                  style="width: 99%">${dto.manbd_content}</textarea></div></td>
+                  style="width: 100%">${dto.manbd_content}</textarea></div></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
