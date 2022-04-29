@@ -1,0 +1,62 @@
+@charset "EUC-KR";
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400');
+
+* {
+	padding: 0;
+	margin: 0
+}
+li {
+	list-style: none
+}
+
+a {
+	text-decoration: none;
+	font-size: 14px
+}
+
+.menu {
+	width: 100%;
+	overflow: hidden;
+	margin: 50px auto 50px auto;
+}
+
+.menu>li {
+	width: 33.2%; /*20*5=100%*/
+	float: left;
+	text-align: center;
+	line-height: 100px;
+	background-color: #5778ff;
+	border-left: 1px solid #c0c0c0;
+	transition: background-color 0.6s;
+	
+}
+.menu>li:hover{
+	
+ background-color: #ff8000;
+}
+.menu a {
+	color: #fff;
+	font-size:large;
+}
+
+.footer{
+	display: flex;
+	background: #1f1f1f;
+	padding: 30px;
+}
+
+.footer > div:first-child {
+	flex: 3;
+	text-align: center;
+	color: white;
+}
+
+.footer > img:hover{
+	
+ background-color: #0080ff;
+}
+.footer > div:last-child {
+	flex: 9;
+	color: white;
+	text-align: center;
+}
