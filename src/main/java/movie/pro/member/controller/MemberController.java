@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import movie.pro.member.dto.MemberDto;
 import movie.pro.member.service.MemberService;
+import movie.pro.security.SecurityUser;
 
 @Controller
 public class MemberController {
@@ -117,6 +119,24 @@ public class MemberController {
 		return i;
 		
 	}//pwCheck
+	
+	@GetMapping("/updateMember")
+	public String updateForm(@AuthenticationPrincipal SecurityUser principal, Model m) {
+		m.addAttribute("dto", principal.getDto());
+		return "mypage/updateForm";
+		
+		}
+	
+	
+	@PostMapping("/updateMember")
+	public String updateMember(MemberDto dto, @AuthenticationPrincipal SecurityUser principal,Model m) {
+			MemberDto mem = principal.getDto(); //세션에 있는 아이디값을 ()_mem에 넣어주고
+			dto.setMem_id(mem.getMem_id()); //()_mem에 memid가져와주고
+			service.updateMember(dto);
+			m.addAttribute("dto", dto);
+			return "mypage/updateForm";
+		}
+
 	
 	
 	

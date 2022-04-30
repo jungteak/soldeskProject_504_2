@@ -22,4 +22,6 @@ public interface MemberDao {
 	
 	List<String> idList(Map<String,Object> m);
 	
+	int updateMember (MemberDto dto);
+	
 }

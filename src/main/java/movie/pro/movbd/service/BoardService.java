@@ -1,4 +1,4 @@
-package movie.pro.manbd.service;
+package movie.pro.movbd.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,58 +7,48 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import movie.pro.manbd.dao.ManbdDao;
-import movie.pro.manbd.dto.ManbdDto;
+import movie.pro.movbd.dao.BoardDao;
+import movie.pro.movbd.dto.BoardDto;
+
+
 
 @Service
-public class ManbdService {
+public class BoardService {
 	
 	@Autowired
-	ManbdDao dao;
+	BoardDao dao;
 	
 	public int count() {
 		return dao.count();
 	}
 	
-	public List<ManbdDto> boardList(int start, int end){
+	public List<BoardDto> boardList(int start, int end){
 		
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("start", start);
 		m.put("end", end);
+		
 		return dao.boardList(m);
 	}
 	
-	
-public List<ManbdDto> noticeList(int start, int end){
-		
-		Map<String, Object> m = new HashMap<String, Object>();
-		m.put("start", start);
-		m.put("end", end);
-		return dao.noticeList(m);
-	}
-
-public List<ManbdDto> eventList(int start, int end){
-	
-	Map<String, Object> m = new HashMap<String, Object>();
-	m.put("start", start);
-	m.put("end", end);
-	return dao.eventList(m);
-}
-	
-	public int insert(ManbdDto dto) {
+	public int insert(BoardDto dto) {
 		return dao.insert(dto);
 	}
-	public ManbdDto boardOne(int no) {
+	public BoardDto boardOne(int no) {
 		return dao.boardOne(no);
 	}
-	public int updateBoard(ManbdDto dto) {
+	public int updateBoard(BoardDto dto) {
 		return dao.updateBoard(dto);
 	}
 	public int deleteBoard(int no) {
 		return dao.deleteBoard(no);
 	}
 	
-	public List<ManbdDto> boardListSearch(int searchn, String search,int start, int end){
+	public List<String> movList(String tk_id) {
+		return dao.movList(tk_id);
+	}
+	
+	public List<BoardDto> boardListSearch(int searchn, String search,int start, int end){
 		Map<String,Object> m = new HashMap<String, Object>();
 		m.put("searchn",searchn);
 		m.put("search", search);
@@ -74,6 +64,13 @@ public List<ManbdDto> eventList(int start, int end){
 		m.put("search", search);
 		return dao.countSearch(m);
 	}
-
 	
+	public int readcnt(int no) {
+		return dao.readcnt(no);
+	}
+	
+	public int likecnt(int movbd_no) {
+		return dao.likecnt(movbd_no);
+	}
+
 }

@@ -17,10 +17,7 @@ public interface ManbdDao {
 	List<ManbdDto> noticeList(Map<String, Object> m);
 	List<ManbdDto> eventList(Map<String, Object> m);
 	
-	
 	int count();//전체 글 갯수
-	int countn();//공지 글 갯수
-	int counte();//이벤트 글 갯수
 	ManbdDto boardOne(int no);
 	int updateBoard(ManbdDto dto);
 	int deleteBoard(int no);
