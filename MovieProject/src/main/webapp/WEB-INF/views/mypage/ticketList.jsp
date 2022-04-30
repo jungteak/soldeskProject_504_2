@@ -15,11 +15,11 @@
 <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
 <style>
-.table-hover
 </style>
 <body>
-	<div id="container">
-		<div id="body">
+	<nav>
+	<div id="container-fluid">
+		<div id="row">
 			<sec:authorize access="isAuthenticated()">
 				<sec:authentication property="principal" var="user" />
 				<c:if test="${dto.tk_id==dto.tk_id}">
@@ -60,5 +60,6 @@
 			</sec:authorize>
 		</div>
 	</div>
+	</nav>
 </body>
 </html>

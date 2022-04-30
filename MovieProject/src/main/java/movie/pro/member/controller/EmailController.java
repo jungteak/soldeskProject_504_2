@@ -22,7 +22,7 @@ public class EmailController {
 
 		String receiver = emailAddress; // Receiver.
 
-		String subject = "Email 제목";
+		String subject = "MOVIE 인증번호입니다.";
 
 		String number = makeRandom();
 		

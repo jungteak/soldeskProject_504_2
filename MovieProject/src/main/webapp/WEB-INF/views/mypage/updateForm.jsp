@@ -120,7 +120,7 @@
 							<div class="msg" id="result"></div>
 						</div>
 						<div class="form-group">
-							<button type="submit" class="btn btn-block create-account">수정완료</button>
+							<button type="submit" class="btn btn-block create-account" id="ok">수정완료</button>
 						</div>
 						<div class="form-group">
 							<button type="submit" class="btn btn-block create-account">회원탈퇴</button>
@@ -148,7 +148,7 @@
 				}
 			}).open();
 		}//addPost
-
+		
 		let num = "";
 		$(function() {
 
@@ -215,8 +215,10 @@
 									$("#pwck_msg").html("입력한 번호와 일치하지 않습니다.");
 									return false;
 								}//비밀번호 확인
-
-							})//submit
+			$("#ok").click(function(){
+			  console.log($('selectc').val(), $('input[type=text]').val());
+				});
+					})//submit
 
 		})//ready
 	</script>

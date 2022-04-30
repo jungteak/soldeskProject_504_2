@@ -1,13 +1,12 @@
 package movie.pro.mypage.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import movie.pro.mypage.dao.MyboardDao;
 import movie.pro.mypage.dto.MyboardDto;
+import movie.pro.mypage.dto.MycommDto;
+import movie.pro.mypage.dto.MyinqubdDto;
 
 @Service
 public class MyboardService {
@@ -19,13 +18,17 @@ public class MyboardService {
 		return dao.countmyBd();
 	}//countmyBoard
 	
+	
 	public List<MyboardDto> myboardList(String movbd_id/* int start,int end*/) {
-		/* Map<String, Object> m = new HashMap<String, Object>(); */
-		/*
-		 * m.put("start", start); m.put("end", end);
-		 */
-		/* m.put("movbd_id", movbd_id); */
 		return dao.myboardList(movbd_id);
 	}//myboardList
+	
+	public List<MyinqubdDto> myinquList(String inqubd_id){
+		return dao.myinquList(inqubd_id);
+	}//myinquList
+	
+	public List<MycommDto> mycommList(String comm_id){
+		return dao.mycommList(comm_id);
+	}//mycommDto
 	
 }

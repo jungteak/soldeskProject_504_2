@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import movie.pro.mypage.dto.MyboardDto;
+import movie.pro.mypage.dto.MycommDto;
+import movie.pro.mypage.dto.MyinqubdDto;
+import movie.pro.mypage.dto.MyticketDto;
 import movie.pro.mypage.service.MyboardService;
 import movie.pro.security.SecurityUser;
 
@@ -25,6 +28,8 @@ public class MyboardController {
 	@GetMapping("/myboardList")
 	public String list(@AuthenticationPrincipal SecurityUser user, @RequestParam(name="p",defaultValue="1") int page, Model m) {
 		String movbd_id = user.getDto().getMem_id();
+		String inqubd_id = user.getDto().getMem_id();
+		String comm_id = user.getDto().getMem_id();
 		int count = service.countmyBd();
 		//글이 있는지 체크
 		
@@ -36,7 +41,10 @@ public class MyboardController {
 			//마찬가지로 list를 통으로 가져워서 사용할 경우 -1해줘야함( 0부터 시작하기때문! )
 			List<MyboardDto> myboardList = service.myboardList(movbd_id);			
 			m.addAttribute("List", myboardList);
-			
+			List<MyinqubdDto> myinquList = service.myinquList(inqubd_id);
+			m.addAttribute("IList", myinquList);
+			List<MycommDto> mycommList = service.mycommList(comm_id);
+			m.addAttribute("CList", mycommList);
 			int pageNum = 1;
 			int totalPages = count /perPage + (count % perPage > 0 ? 1 : 0); //전체 페이지 수 
 			//나머지가 있다면 한페이지 추가
@@ -51,7 +59,7 @@ public class MyboardController {
 			m.addAttribute("pageNum", pageNum);
 			m.addAttribute("totalPages", totalPages);
 			m.addAttribute("movbd_id", movbd_id);
-			m.addAttribute("myboardList", myboardList);
+			
 		}
 		m.addAttribute("nowPage",page);
 		m.addAttribute("count", count);
