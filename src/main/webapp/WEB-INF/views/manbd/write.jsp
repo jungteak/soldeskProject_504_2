@@ -4,27 +4,6 @@
 <html>
 <head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-
-	$(function(){
-		
-		$("#insertCinema").submit(function(){
-			
-			if($("#cine_name").val()==""){
-				$("#name_result").html("이름을 입력해 주세요");
-				return false;
-			}
-			
-		})//submit
-		
-		let areaList = ["서울", "경기", "인천", "대전/충청/세종", "부산/대구/경상", "광주/전라", "강원"];
-		for(let i in areaList){
-			$("#cine_area").append("<option value="+areaList[i]+" >"+areaList[i]+"</option>");
-		}//cine_area 설정
-		
-	})//ready
-	
-</script>
 <title>글쓰기</title>
 <style>
 	.pink{background-color: #8DA9EA; width: 34px; height: 1.5rem;}
@@ -67,13 +46,7 @@
 		<tr>
 			<td class="pink">극장</td>
 		<td>
-		
-	<select name="manbd_cinema">
-				<option value="전체">전체</option>
-			<c:forEach items="${cList}" var="cinema">
-				<option value="${cinema.cine_area}">${cinema.cine_area}</option>
-			</c:forEach>		
-			</select>
+	
 		
 	<select name="manbd_cinema">
 				<option value="전체">전체</option>

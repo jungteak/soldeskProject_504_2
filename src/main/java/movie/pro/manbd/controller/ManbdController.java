@@ -72,7 +72,7 @@ public class ManbdController {
 			List<ManbdDto> eventList = service.eventList(startRow, endRow);
 			m.addAttribute("eList", eventList);
 
-			int pageNum = 5;
+			int pageNum = 2;
 			m.addAttribute("pageNum", pageNum);
 
 			// 전체 페이지

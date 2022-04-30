@@ -111,7 +111,12 @@ ul.tabs li.current { /*---전체/공지사항/이벤트 각각---*/
 	width: 130;
 	height: 30; /*--버튼 크기---*/
 }
+img{
+ width: 350px;
+  height: 200px;
+   object-fit: fill;
 
+}
 
 </style>
 </head>
@@ -125,7 +130,12 @@ ul.tabs li.current { /*---전체/공지사항/이벤트 각각---*/
 		<h1 >게시글 목록</h1>
 		<marquee loop="2" direction="left" bgcolor="gold" behavior="slide">영화관의
 			주요한 이슈 및 여러가지 소식들을 확인하실 수 있습니다.</marquee> 
-
+<marquee loop="1" direction="left"  behavior="slide" scrollAmount=50>
+<img src=https://image.tmdb.org/t/p/original//bCz71ysciwNL2xddSm25ufrgZ7V.jpg>
+<img src=https://image.tmdb.org/t/p/original//2R8smeSDkPx6TKIRveKPXi0JVI6.jpg>
+<img src=https://image.tmdb.org/t/p/original//voddFVdjUoAtfoZZp2RUmuZILDI.jpg>
+<img src=https://image.tmdb.org/t/p/original//yju3CSIR8fdNsZyPdMsUun7XQnd.jpg>
+</marquee> 
 	
 		<c:if test="${count != 0 }"> <%--이거 위치 모르겠다.. --%>
 
@@ -175,6 +185,7 @@ ul.tabs li.current { /*---전체/공지사항/이벤트 각각---*/
 					<%--  test="${count == 0 } --%>	<a href="list?p=${end+1}&t=1">[다음]</a>
 					</c:if>
 				</div>
+				<br>
 			</div>
 
 			<div id="tab-2" class="tab-content">
@@ -212,10 +223,10 @@ ul.tabs li.current { /*---전체/공지사항/이벤트 각각---*/
 					 <%-- test="${count == 0 } --%>	<a href="list?p=${end+1}&t=2">[다음]</a>
 					</c:if>
 				</div>
+				<br>
 				</div>
 				
-	<br>
-
+	
 			<div id="tab-3" class="tab-content">
 				<table>
 					<tr>

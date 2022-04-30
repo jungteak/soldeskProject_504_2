@@ -48,7 +48,6 @@
 				<tr>
 			<td class="pink">극장</td>
 			<td><select name="manbd_cinema">
-				<option value="전체">전체</option>
 			<c:forEach items="${cList}" var="cinema">
 				<option value="${cinema.cine_name}">${cinema.cine_name}</option>
 			</c:forEach>		
@@ -72,7 +71,7 @@
 </form>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-  
+
   </script>
 </body>
 </html>

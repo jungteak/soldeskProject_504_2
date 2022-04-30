@@ -13,46 +13,39 @@
 </style>
 </head>
 <body>
-<div>
-              <ul id="menu">
-                <li>
-                  menu1
-                  <ul class="submenu">
-                    <li><a href="">submenu1</a></li>
-                    <li><a href="">submenu2</a></li>
-                    <li><a href="">submenu3</a></li>
-                  </ul>
-                </li>
-                <li>
-                  menu2
-                  <ul class="submenu">
-                    <li><a href="">submenu1</a></li>
-                    <li><a href="">submenu2</a></li>
-                    <li><a href="">submenu3</a></li>
-                  </ul>
-                </li>
-                <li>
-                  menu3
-                  <ul class="submenu">
-                    <li><a href="">submenu1</a></li>
-                    <li><a href="">submenu2</a></li>
-                    <li><a href="">submenu3</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-</body>
+<h1>대분류 항목에 반응해 목록이 바뀌는 중분류</h1>
+<select id="productSelect">
+   <option value="0" selected="selected">제품군 선택</option>
+   <option value="1">TGD클리너 500ml</option>
+   <option value="2">TGD클린키트</option>
+   <option value="3">TGD클린팩</option>
+</select>
+>
+<select id="mallSelect">
+   <option value="0">판매몰 선택</option>
+   <option value="500-OWN" class="mall1">트라움샵</option>
+   <option value="500-WM" class="mall1">위메프</option>
+   <option value="kit-OWN" class="mall2">트라움샵</option>
+   <option value="pack-OWN" class="mall3">트라움샵</option>
+</select>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-$("li").click(function () {
-    if ($(this).hasClass("active")) {
-      $(this).children().css("display", "none");
-      $(this).removeClass();
-    } else {
-      $(this).addClass("active");
-      $(this).children().css("display", "block");
-    }
-  });
+var malls = false;
+
+function update_selected() {
+  $("#mallSelect").val(0);
+  $("#mallSelect").find("option[value!=0]").detach();
+
+  $("#mallSelect").append(malls.filter(".mall" + $(this).val()));
+}
+
+$(function() {
+  malls = $("#mallSelect").find("option[value!=0]");
+  malls.detach();
+
+  $("#productSelect").change(update_selected);
+  $("#productSelect").trigger("change");
+});
 	
 </script>
 </html>
