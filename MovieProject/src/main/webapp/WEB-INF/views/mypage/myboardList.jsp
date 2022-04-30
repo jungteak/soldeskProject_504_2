@@ -53,7 +53,7 @@
 							<td>${dto.movbd_id}</td>
 							<td><fmt:formatDate value="${dto.movbd_regdate}"
 									dateStyle="short" /></td>
-							<td>${dto.movbd_readcount}</td>
+							<td>${dto.movbd_readcnt}</td>
 						</tr>
 					</c:forEach>
 				</table>

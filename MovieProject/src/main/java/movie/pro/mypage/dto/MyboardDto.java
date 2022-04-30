@@ -13,7 +13,7 @@ public class MyboardDto {
 	 private String movbd_title;
 	 private String movbd_content;
 	 private Date movbd_regdate;
-	 private int movbd_readcount;	
+	 private int movbd_readcnt;	
 	 private int movbd_recommend;
 	 
 }

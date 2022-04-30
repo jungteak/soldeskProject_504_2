@@ -23,7 +23,7 @@
 
 
 <select id="countmyBd" resultType="int">
-	select MOVBD_READCOUNT from movbd 
+	select MOVBD_READCNT from movbd 
 </select>
 
 
