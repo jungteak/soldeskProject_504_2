@@ -5,6 +5,22 @@
 <head>
 <title>상영정보추가</title>
 </head>
+<style>
+	table {widht:1000px; margin:40px auto;}
+	table {
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+	  }
+	  tr, td {
+	    border-bottom: 1px solid #444444;
+	    padding: 10px;
+	  }
+	.item {width:100px; height:30px; font-weight:bold; text-align:center; background-color:#A1BAF5;}
+
+	.select{width:150px;}
+	
+	#show_h,#show_m {widht:50px;}
+</style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 
@@ -44,7 +60,7 @@
 			}).done(function(data){
 				$("#cinema").empty();
 				$("#theater").empty();
-				let str = "<select id='cine_no' name='cine_no'><option value='0'>선택</option>";
+				let str = "<select class='select' id='cine_no' name='cine_no'><option value='0'>선택</option>";
 				if(data!=""){
 					for(let i in data){
 						str += "<option value="+data[i].cine_no+">"+data[i].cine_name+"</option>";
@@ -75,7 +91,7 @@
 				dataType:"json"
 			}).done(function(data){
 				$("#theater").empty();
-				let str = "<select id='th_info'>";
+				let str = "<select id='th_info' class='select'>";
 				if(data!=""){
 				for(let i in data){
 					str += "<option value="+data[i].th_no+","+data[i].th_col+","+data[i].th_row+">"+data[i].th_no+"</option>";
@@ -108,12 +124,13 @@
 			let th_col = arr[1];
 			let th_row = arr[2];
 			let mov_title = $("#mov option:selected").text();
+			let cine_name = $("#cine_no option:selected").text();
 			
-			str = "<input type='hidden' name='th_no' value="+th_no+">";
+			str = "<input type='hidden' id='th_no' name='th_no' value="+th_no+">";
 			str += "<input type='hidden' name='th_col' value="+th_col+">";
 			str += "<input type='hidden' name='th_row' value="+th_row+">";
 			str += "<input type='hidden' name='th_extra' value="+(th_row*th_col)+">";
-			str += "<input type='hidden' name='mov_title' value='"+mov_title+"'>";
+			str += "<input type='hidden' id='mov_title' name='mov_title' value='"+mov_title+"'>";
 			
 			let show_no = $("#mov").val();
 			arr = $("#show_date").val().split("-");
@@ -122,6 +139,14 @@
 			show_no = Number(show_no);
 			str += "<input type='hidden' name='show_no' value="+show_no+">";
 			$("#insertShowinfo").append(str);
+			
+			let chk = confirm("상영정보는 수정/삭제가 불가능합니다\n상영정보를 추가하시겠습니까?\n지역 : "+$("#cine_area").val()+"\n극장명 : "+cine_name+
+					"\n상영관번호 : "+$("#th_no").val()+"\n영화제목 : "+mov_title+"\n상영일자 : "+$("#show_date").val()+
+					"\n상영시간 : "+$("#show_h").val()+" 시"+$("#show_m").val()+" 분");
+
+			if(chk==false){
+				return false;
+			}//if
 			
 		})//submit
 		
@@ -157,24 +182,24 @@
 <form id="insertShowinfo" method="post">
 	<table>
 		<tr>
-			<td>지역 : </td><td><select id="cine_area">
+			<td class="item">지역 : </td><td><select id="cine_area" class="select">
 			<option value="0">지역</option></select></td>
 		</tr>
 		<tr>
-			<td>극장명 : </td><td id="cinema">지역을 선택하세요</td>
+			<td class="item">극장명 : </td><td id="cinema">지역을 선택하세요</td>
 		</tr>
 		<tr>
-			<td>상영관 : </td><td id="theater">극장을 선택하세요</td>
+			<td class="item">상영관 : </td><td id="theater">극장을 선택하세요</td>
 		</tr>
 		<tr>
-			<td>영화 : </td><td><select id="mov" name="mov_no"></select></td>
+			<td class="item">영화 : </td><td><select id="mov" name="mov_no"></select></td>
 		</tr>
 		<tr>
-			<td>상영일 : </td><td id="date"></td>
+			<td class="item">상영일 : </td><td id="date"></td>
 		</tr>
 		<tr>
-			<td>상영시간 : </td><td><select id="show_h" name="show_h"><c:forEach begin="0" end="23" step="1" var="i"><option value="${i}">${i}</option></c:forEach></select>시
-			<select id="show_m" name="show_m"><c:forEach begin="0" end="50" step="10" var="i"><option value="${i}">${i}</option></c:forEach></select>분</td>
+			<td class="item">상영시간 : </td><td><select id="show_h" name="show_h"><c:forEach begin="0" end="23" step="1" var="i"><option value="${i}">${i}</option></c:forEach></select> 시
+			<select id="show_m" name="show_m"><c:forEach begin="0" end="50" step="10" var="i"><option value="${i}">${i}</option></c:forEach></select> 분</td>
 		</tr>
 		<tr>
 			<td colspan=2 align="center"><input type="submit" value="등록"></td>

@@ -47,6 +47,12 @@ public class TicketController {
 		return "ticket/ticketPage";
 	}//ticketPage
 	
+	@GetMapping("ticket/ticketInfo")
+	@ResponseBody
+	public JoinTicketDto selectTicket(long tk_no) {
+		return service.selectTkinfo(tk_no);
+	}//selectTicket
+	
 	@GetMapping("ticket/selectSeat")
 	@ResponseBody
 	public List<String> selectSeat(long show_no) {

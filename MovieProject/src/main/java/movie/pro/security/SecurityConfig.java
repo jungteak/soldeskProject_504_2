@@ -24,14 +24,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN");
 		http.authorizeRequests().antMatchers("/qnabd/insert","qnabd/udate/**").hasRole("ADMIN");
 		http.authorizeRequests().antMatchers("/ticket/ticketing/**").hasRole("MEMBER");
+		http.authorizeRequests().antMatchers("/mypage").hasRole("MEMBER");
+		http.authorizeRequests().antMatchers("/updateMember").hasRole("MEMBER");
+		http.authorizeRequests().antMatchers("/mytkList").hasRole("MEMBER");
+		http.authorizeRequests().antMatchers("/myboardList").hasRole("MEMBER");
+		http.authorizeRequests().antMatchers("/movbd/**").authenticated();
 		http.authorizeRequests().antMatchers("/**").permitAll();
 		http.csrf().disable();
-		http.formLogin().loginPage("/login");
+		http.formLogin().loginPage("/login").defaultSuccessUrl("/mainpage");
 		http.exceptionHandling();
 		http.logout().invalidateHttpSession(true).deleteCookies().logoutSuccessUrl("/mainpage");
 		
 		http.userDetailsService(usersUserDetailService);
 		
+		http.headers().frameOptions().sameOrigin();
 	}
 	
 	  @Bean public PasswordEncoder passwordEncoder() { 

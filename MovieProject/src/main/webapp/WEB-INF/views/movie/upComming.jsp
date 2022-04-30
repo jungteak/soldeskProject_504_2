@@ -5,19 +5,20 @@
 <head>
 <title>최신 개봉작</title>
 </head>
+<link href="/css/pager.css" rel="stylesheet">
+<link href="/css/movieMenu.css" rel="stylesheet">
 <style>
 	img { 
-		padding:10px;
+		cursor:pointer;
 	 }
-	 
-	 #movieMenu ul li{display:inline-block;}
-	 
-	 li{list-style:none}
 	 
 	 .ticekting{
 	 display:block;
 	 margin:auto;
 	 }
+	 
+	#upComming {margin:auto;}
+	#upComming ul li{list-style:none;}
 	 
 </style>
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -48,19 +49,18 @@
 						img = "/images/noImg.JPG";
 					}
 					let id = data.results[i].id;
-					str += "<td><ul><li><img class='poster' id="+id+" width=300 height=400 margin=50 src="+img+"></il>";
-					str += "<li><button class='ticekting' title="+id+">예매하기</button></li></ul></td>";
+					str += "<td><ul><li><img class='poster' id="+id+" width=300 height=400 margin=50 src="+img+"></il></ul></td>";
 					
 					if(b%4==0){
 						str += "</tr>";
 					}
 				}//for
 				str += "</table>";
-				$("#boxOffice").append(str);
+				$("#upComming").append(str);
 				
 			});//ajax
 			
-			$("#boxOffice").on("click",".poster",function(){
+			$("#upComming").on("click",".poster",function(){
 				let id = $(this).attr("id");
 				location.href="../movie/movieInfo/"+id;
 			});//posterclick
@@ -88,23 +88,29 @@
 <body>
 <div id="container">
 
+<jsp:include page="/header" flush="true"/>
+
 <div id="body">
-	<div id="movieMenu">
-		<ul>
-			<li><a href="/movie/boxOffice">박스오피스</a></li>
-			<li><a href="/movie/upComming">최신 개봉 영화</a></li>
-			<li><input id="key" name="key" size="10"><button id="search">검색</button></li>
-		</ul>
+	<div id="movieMenu" align="center">
+		<div class="boxOffice"><a href="/movie/boxOffice">박스오피스</a>
+		</div><div class="selected upComming"><a href="/movie/upComming">최신 개봉 영화</a>
+		</div><div class="search" align="center"><input id="key" class="search-input" name="key" size="10"><button id="search">검색</button></div>
 	</div>
-	<div id="boxOffice" align="center">
+	<div id="upComming" align="center">
 	
 	</div>
-	<div id="page" align="center">
+	<div class="pagination-wrapper">
+  		<div class="pagination">
 			<c:forEach begin="1" end="5" var="i">
-				<a href="?p=${i}">${i}</a>
+				<c:if test="${page==i}"><a aria-current="page" class="page-numbers current" href="?p=${i}">${i}</a></c:if>
+				<c:if test="${page!=i}"><a class="page-numbers" href="?p=${i}">${i}</a></c:if>
 			</c:forEach>
+		</div>
 	</div>
 </div>
+
+<jsp:include page="/footer" flush="true"/>
+
 </div>
 </body>
 </html>

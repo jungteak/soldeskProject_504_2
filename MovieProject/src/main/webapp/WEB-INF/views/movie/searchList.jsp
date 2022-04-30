@@ -26,7 +26,9 @@
 	
 	.line-gr{background-color:#C3D1F1;}
 </style>
+<link href="/css/nav.css" rel="stylesheet">
 <link href="/css/pager.css" rel="stylesheet">
+<link href="/css/movieMenu.css" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	
@@ -110,12 +112,10 @@
 <body>
 <div id="container">
 <div id="body">
-	<div id="movieMenu">
-		<ul>
-			<li><a href="/movie/boxOffice">박스오피스</a></li>
-			<li><a href="/movie/upComming">최신 개봉 영화</a></li>
-			<li><input id="key" name="key" size="10"><button id="search">검색</button></li>
-		</ul>
+	<div id="movieMenu" align="center">
+		<div class="boxOffice"><a href="/movie/boxOffice">박스오피스</a>
+		</div><div class="upComming"><a href="/movie/upComming">최신 개봉 영화</a>
+		</div><div class="search" align="center"><input id="key" class="search-input" name="key" size="10"><button id="search">검색</button></div>
 	</div>
 	<c:if test="${totalPages==0}">
 		<h3>검색 결과가 없습니다.</h3>

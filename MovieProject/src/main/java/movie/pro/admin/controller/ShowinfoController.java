@@ -57,12 +57,6 @@ public class ShowinfoController {
 		return ""+i;
 	}//deleteShowinfo
 	
-	/*
-	 * @GetMapping("showinfo/screening")
-	 * 
-	 * @ResponseBody public List<ShowinfoDto> screening(ShowinfoDto dto){ return
-	 * service.screening(dto); }//screening
-	 */	
 	@GetMapping("showinfo/cineList")
 	@ResponseBody
 	public List<CinemaDto> cineList(String cine_area){

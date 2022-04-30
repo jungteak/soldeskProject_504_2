@@ -4,6 +4,21 @@
 <html>
 <head>
 <title>극장 정보 수정</title>
+<style>
+	table {widht:1000px; margin:40px auto;}
+	.item {width:100px; height:30px; font-weight:bold; text-align:center; background-color:#A1BAF5; }
+	.input{width:200px; height:30px;}
+	#cine_name{width:150px;}
+	#cine_area{width:160px;}
+	table {
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+	  }
+	  tr, td {
+	    border-bottom: 1px solid #444444;
+	    padding: 10px;
+	  }
+</style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 
@@ -12,7 +27,7 @@
 		$("#updateCinema").submit(function(){
 			
 			if($("#cine_name").val()==""){
-				$("#name_result").html("이름을 입력해 주세요");
+				alert("이름을 입력해 주세요");
 				return false;
 			}
 			
@@ -34,14 +49,14 @@
 				<input type="hidden" name="_method" value="put">
 				<table>
 					<tr>
-						<td>극장 이름</td><td><input id="cine_name" name="cine_name" value="${dto.cine_name}"><span id="name_result"></span></td>
+						<td class="item">극장 이름</td><td class="input"><div align="center"><input id="cine_name" name="cine_name" value="${dto.cine_name}"></div></td>
 					</tr>
 					<tr>
-						<td>지역</td>
-						<td><select id="cine_area" name="cine_area"></select></td>
+						<td class="item">지역</td>
+						<td class="imput"><div align="center"><select id="cine_area" name="cine_area"></select></div></td>
 					</tr>
 					<tr>
-						<td colspan=2><input type="submit" value="수정"></td>
+						<td colspan=2><div align="center"><input type="submit" value="수정"></div></td>
 					</tr>
 				</table>
 			</form>

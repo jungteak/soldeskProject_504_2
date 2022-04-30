@@ -7,8 +7,9 @@
 <head>
 <style>
         .seat {
-            width: 30px;
-            height: 30px;
+            width: 50px;
+            height: 50px;
+            font-weight:bold;
         }
         
         .clicked {
@@ -21,7 +22,36 @@
             color: white;
         }
         
-        #select,#info {display:inline-block;}
+        ul li {list-style:none; width:99%;}
+        
+        .ex {display:inline-block; width:32%; margin-top:20px; margin-bottom:40px;text-align:center;font-weight:bold;}
+        
+        #body {width:1000px;margin:40px auto;position:relative;}
+        
+        #select,#info {display:inline-block; width:49%;margin:auto;}
+        
+        #info{margin-:auto;position:absolute;right:0px;top:5%;}
+        
+        #info ul li {margin-top:20px;font-weight:bold;font-size:16px;}
+        
+        #seat {margin-top:20px; width:270px;}
+        
+        #seat div {display:inline-block; background-color:#C3D1F1; font-size:20px; width:50px; height: 40px; text-align:center; line-height:40px;}
+        
+        #seat div{margin:5px;}
+        
+        
+        
+        #selectPeople{margin: 20px auto;text-align:center;font-weight:bold;}
+        
+        #selectSeat{text-align:center;margin:20px auto;}
+        
+        #title{font-weight:bold;font-size:30px;}
+        
+        #pay_msg {font-weight:bold; font-size:30px;}
+        
+        .p , #pay_msg{display:inline-block;}
+        
     </style>
 <title>ticketing</title>
 </head>
@@ -53,6 +83,9 @@
 							</c:forEach>
 						</select> 명
 					</div></li>
+					<li><div class="ex"><button style="width:25px;height:25px;" disabled></button> 예매가능 </div>
+					<div class="ex"><button style="width:25px;height:25px;background-color:red" disabled></button> 선택좌석 </div>
+					<div class="ex"><button style="width:25px;height:25px;background-color:black" disabled></button> 매진좌석 </div></li>
 					<li><div id="selectSeat" class="seat-wrapper"></div></li>
 				</ul>
 			</div>
@@ -63,11 +96,11 @@
 					<li><div id="show_date"><fmt:formatDate value="${dto.show_date}" pattern="yyyy년 MM월 dd일"/></div></li>
 					<li><div id="show_time">${dto.show_h}시 ${dto.show_m}분</div></li>
 					<li>선택좌석<div id="seat"></div><input type="hidden" id="tk_seat" name="tk_seat"></li>
-					<li><div id="people"></div></li>
-					<li><div id="pay_msg"></div><input type="hidden" id="tk_pay" name="tk_pay"></li>
-					<li><div><input type="submit" value="다음"></div></li>
+					<li><div id="people">성인 <div class='p a'></div> 인 청소년 <div class="p c"></div> 인<div></div></div></li>
+					<li>총 <div id="pay_msg"></div> 원<input type="hidden" id="tk_pay" name="tk_pay"></li>
 				</ul>
 			</div>
+			<div align="center"><input type="submit" value="다음"></div>
 		</form>
 		</div>
 		
@@ -122,7 +155,9 @@
 		                ss_len = selectedSeats.length;
 		                
 		                $("#seat").empty();
-		                $("#seat").append(selectedSeats);
+		                for(let k in selectedSeats){
+		                	$("#seat").append("<div>"+selectedSeats[k]+"</div>");
+		                }
 		                $("#tk_seat").val(selectedSeats);
 		                //click class가 존재하지 않을때 (추가해주는 toggle)
 		            } else {
@@ -146,7 +181,9 @@
 		                ss_len = selectedSeats.length;
 		                
 		                $("#seat").empty();
-		                $("#seat").append(selectedSeats);
+		                for(let k in selectedSeats){
+		                	$("#seat").append("<div>"+selectedSeats[k]+"</div>");
+		                }
 		                $("#tk_seat").val(selectedSeats);
 		            }
 		           
@@ -204,7 +241,6 @@
 		}).change(function(){
 			let a = Number($("#tk_a").val());
 			let c = Number($("#tk_c").val());
-			let str = "";
 			let pay = 0;
 			
 			if(a+c>8){
@@ -222,20 +258,20 @@
 			people_chk = a+c;
 			
 			$("#pay_msg").empty();
-			$("#people").empty();
+			$(".a").empty();
+			$(".c").empty();
 			
 			if(a!=0){
-				str += "<div>성인 "+a+"인</div>";
+				$(".a").append(a);
 				pay += a * 10000;
 			}//if
 			if(c!=0){
-				str += "<div>청소년 "+c+"인</div>";
+				$(".c").append(c);
 				pay += c * 7000;
 			}//if
 			
-			$("#people").append(str);
 			$("#tk_pay").val(pay);
-			$("#pay_msg").append("총 "+pay+"원");
+			$("#pay_msg").append(pay);
 			
 		})//.peopleChange
 		

@@ -20,16 +20,15 @@ public class MainController {
 	public String joinFrom() {
 		return"/join/joinForm";
 	}//joinForm
-	
-	@GetMapping("/test")
-		public String test() {
-			return "mainpage/test";
-		}
-	
-	@GetMapping("/test1")
-	public String test1() {
-		return "mainpage/test1";
-	}
-	
 
+	@GetMapping("header")
+	public String header() {
+		return "menu/header";
+	}//header
+	
+	@GetMapping("footer")
+	public String footer() {
+		return "menu/footer";
+	}//footer
+	
 }

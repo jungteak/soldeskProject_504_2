@@ -9,6 +9,8 @@
 	
 	.poster {padding:10px; cursor:pointer;}
 	
+	#body{margin:auto;}
+	
 	#movieMenu ul li{display:inline-block;}
 	
 	#gallery_wrap{ margin: 0 auto; width: 450px;}
@@ -65,9 +67,11 @@
 	
 	.name,.peopleImg {margin:auto;}
 	
-	details summary {font-weight:bold;}
+	details summary {font-weight:bold; font-size:20px;}
 </style>
 </head>
+<link href="/css/nav.css" rel="stylesheet">
+<link href="/css/movieMenu.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua:400" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
@@ -227,7 +231,7 @@
 					$("#trailer").append("<h1>예고편</h1>");
 					let str = "";
 					for(let i in data.results){
-						let url = "https://www.youtube.com/embed/"+data.results[0].key+"?mute=0";
+						let url = "https://www.youtube.com/embed/"+data.results[i].key+"?mute=0";
 						str += "<details><summary>"+data.results[i].name+"<hr></summary>";
 						str += "<iframe width='1195' height='672' src="+url+
 						" frameborder='0' gesture='media' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe><hr></details>";
@@ -263,14 +267,13 @@
 <body>
 <div id="container">
 	
-	<div id="movieMenu">
-		<ul>
-			<li><a href="/movie/boxOffice">박스오피스</a></li>
-			<li><a href="/movie/upComming">최신 개봉 영화</a></li>
-			<li><input id="key" name="key" size="10"><button id="search">검색</button></li>
-		</ul>
-	</div>
+	
 	<div id="body">
+	<div id="movieMenu" align="center">
+		<div class="boxOffice"><a href="/movie/boxOffice">박스오피스</a>
+		</div><div class="upComming"><a href="/movie/upComming">최신 개봉 영화</a>
+		</div><div class="search" align="center"><input id="key" class="search-input" name="key" size="10"><button id="search">검색</button></div>
+	</div>
 	
 		<div id="posterNinfo">
 		</div>

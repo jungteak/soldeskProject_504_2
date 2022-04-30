@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400');
 
 #header {margin-bottom:30px;}
-#body {margin-bottom:30px;}
 #footer {border-width:1px 0px 0px 0px; border-style:solid; border-color:gray;}
 #footer #serviceCenter {padding-top:20px;}
 #footer #serviceCenter ul li {list-style:none; text-align:center;}
@@ -177,7 +176,6 @@
 
 html, body {
   font-size: 16px;
-  font-family: "Fira Mono", monospace;
   margin: 15px;
 }
 

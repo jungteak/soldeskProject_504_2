@@ -7,11 +7,22 @@
 <title>상영정보 리스트</title>
 </head>
 <style>
+	
+	#body {width:1400px;margin:auto;}
+	
 	#select_date li {display:inline-block;}
 	#select_date li div{padding:5px;}
-	#select li {display:inline-block; padding:5px;}
+	#select div {display:inline-block;margin:auto;width:150;hegiht:75}
+	
 	#list li div {display:inline-block; padding:5px;}
 	#result .th_line div {display:inline-block;}
+	#selectMovCine li a {color:white;}
+	#selectMovCine li a:link {text-decoration:none;}
+	#selectMovCine li a:visited {text-decoration:none;}
+	#selectMovCine li a:hover {text-decoration:underline;}
+	#selectMovCine li a:active {text-decoration:underline;}
+	#selectMovCine li {list-style:none; width:100px; height:50px;background-color:#A3B3D9;text-align:center;line-height:50px;}
+	#selectMovCine #selected {background-color:#072260;}
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -33,7 +44,7 @@
 		}//for select_date 설정	
 		
 		for(let i in areaList){
-			$("#select").append("<li><div class='selectArea' id="+areaList[i]+">"+areaList[i]+"</div></li>");
+			$("#select").append("<div class='selectArea' id="+areaList[i]+">"+areaList[i]+"</div>");
 		}//for
 		
 		$.ajax({
@@ -450,11 +461,12 @@
 <body>
 <input type="hidden" id="cine_no">
 <div id="container">
+<div id="body">
 <div id="selectMenu">
 	<table id="menuTable">
 		<tr>
-			<td rowspan="2"><ul><li><a href="showinfoMovList">영화별</a></li><li><a href="showinfoCineList">극장별</a></li></ul></td>
-			<td><ul id="select"></ul></td>
+			<td rowspan="2"><ul id="selectMovCine"><li><a href="showinfoMovList">영화별</a></li><li id="selected"><a href="showinfoCineList">극장별</a></li></ul></td>
+			<td><div id="select"></div></td>
 		</tr>
 		<tr><td><ul id="list">
 		</ul></td></tr>
@@ -468,7 +480,7 @@
 		
 	</div>
 </div>
-
+</div>
 </div>
 </body>
 </html>

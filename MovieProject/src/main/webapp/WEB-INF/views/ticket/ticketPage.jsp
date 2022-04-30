@@ -7,7 +7,30 @@
 <head>
 <title>예매 내역</title>
 <style>
-	#poster,#info{display:inline-block;}
+	#body{width:1000px;margin:40px auto; position:relative;}
+	#poster,#info{display:inline-block; width:49%;}
+	#info {margin-:auto;position:absolute;right:0px;top:5%;}
+	#poster img {margin:auto;}
+	#info ul li {margin-top:20px;font-weight:bold;font-size:16px;}
+	ul li {list-style:none; width:99%;}
+	#seat {margin-top:20px; width:270px;}
+        
+    #seat div {display:inline-block; background-color:#C3D1F1; font-size:20px; width:50px; height: 40px; text-align:center; line-height:40px;}
+        
+    #seat div{margin:5px;}
+        
+    #selectPeople{margin: 20px auto;text-align:center;font-weight:bold;}
+        
+    #selectSeat{text-align:center;margin:20px auto;}
+        
+    #title{font-weight:bold;font-size:30px;}
+        
+    #pay_msg {font-weight:bold; font-size:30px;}
+        
+    .p , #pay_msg{display:inline-block;}
+        
+     #btn_div {margin-top:30px;}
+	
 </style>
 </head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -17,6 +40,10 @@
 
 	$(function(){
 	
+		let today = new Date().toISOString().substr(0,10);
+		let show_hour = new Date().getHours()+1;
+		let show_minute = new Date().getMinutes();
+		
 	$.ajax({
 			url:"https://api.themoviedb.org/3/movie/"+${dto.mov_no}+"?api_key="+api_key,
 			type:"get",
@@ -29,10 +56,25 @@
 				img = "/images/noImg.JPG";
 			}//if
 					
-			$("#poster").append("<img class='poster' width=300 height=400 src="+img+">");
+			$("#poster").append("<img class='poster' width=350 height=500 src="+img+">");
 			
 			})//ajax 포스터 변경
 			
+			$.ajax({
+				url:"../ticketInfo",
+				type:"get",
+				data:"tk_no="+"${dto.tk_no}",
+				dataType:"json"
+			}).done(function(data){
+				
+				let date = data.show_date.substr(0,10);
+				
+				if(date>=today){
+					$("#btn_div").prepend("<button id='delBtn' >예매취소</button>");
+				}
+				})//ajax
+	
+	
 	$("#delBtn").click(function(){
 		
 		let select = confirm("정말 취소하시겠습니까?");
@@ -75,12 +117,12 @@
 					<li><div id="th_no">${dto.cine_name} / ${dto.th_no}관</div></li>
 					<li><div id="show_date"><fmt:formatDate value="${dto.show_date}" pattern="yyyy년 MM월 dd일"/></div></li>
 					<li><div id="show_time">${dto.show_h}시 ${dto.show_m}분</div></li>
-					<li>선택좌석<div id="seat">${dto.tk_seat}</div><input type="hidden" id="tk_seat" name="tk_seat" value="${dto.tk_seat}"></li>
+					<li>선택좌석<div id="seat"><c:forEach items="${dto.tk_seat}" var="seat"><div class="seat">${seat}</div></c:forEach></div><input type="hidden" id="tk_seat" name="tk_seat" value="${dto.tk_seat}"></li>
 					<li><div id="people">성인 ${dto.tk_a}명 청소년 ${dto.tk_c}명</div></li>
 					<li><div id="pay_msg">결제금액 ${dto.tk_pay}</div><input type="hidden" id="tk_pay" name="tk_pay"></li>
 				</ul>
 			</div>
-			<div align="center"><button id="delBtn" >예매취소</button> <button>내 예매 정보 확인</button></div>
+			<div align="center" id="btn_div"> <button>내 예매 정보 확인</button></div>
 		</div>
 	</div>
 	</c:if>
