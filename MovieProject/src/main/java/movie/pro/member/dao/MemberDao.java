@@ -26,6 +26,5 @@ public interface MemberDao {
 	
 	int deleteMember(String mem_id);
 	
-	int updateMember (MemberDto dto);
 	
 }

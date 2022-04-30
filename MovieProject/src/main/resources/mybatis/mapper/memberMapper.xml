@@ -9,8 +9,6 @@
 <update id="updatePw" parameterType="map">
 	update member set mem_pw=#{pw} where mem_name = #{name} and mem_email=#{mail} and mem_id=#{id}
 </update>
-
-<update id="updateMember" parameterType="movie.pro.member.dto.MemberDto">update member set mem_pw=#{mem_pw}, mem_phone=#{mem_phone}, mem_address=#{mem_address}, mem_email=#{mem_email} where mem_id=#{mem_id} </update>
 	
 <select id="findById" parameterType="String" resultType="movie.pro.member.dto.MemberDto">
 	select * from member where mem_id = #{mem_id}
@@ -29,7 +27,7 @@
 </select>
 
 <update id="updateMember" parameterType="movie.pro.member.dto.MemberDto">
-	update member set mem_pw=#{mem_pw}, mem_phone=#{mem_phone}, mem_address=#{mem_address}, mem_email=#{mem_email}  where mem_id=#{mem_id}
+update member set mem_pw=#{mem_pw}, mem_phone=#{mem_phone}, mem_address=#{mem_address}, mem_email=#{mem_email}  where mem_id=#{mem_id}
 </update>
 
 <delete id="deleteMember" parameterType="movie.pro.member.dto.MemberDto" >

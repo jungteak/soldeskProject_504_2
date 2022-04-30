@@ -79,10 +79,6 @@ public class MemberService {
 		
 	}//findPw
 	
-	public int updateMember(MemberDto dto) {
-		dto.setMem_pw(encoder.encode(dto.getMem_pw()));	
-		return dao.updateMember(dto);
-	}//updateMember
 	
 	public int updateMember(MemberDto dto) {
 		dto.setMem_pw(encoder.encode(dto.getMem_pw()));	
