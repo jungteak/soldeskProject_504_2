@@ -9,11 +9,13 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.support.SessionStatus;
 
 import movie.pro.member.dto.MemberDto;
 import movie.pro.member.service.MemberService;
@@ -138,6 +140,46 @@ public class MemberController {
 		}
 
 	
+	@GetMapping("/updateMember")
+	public String updateForm(@AuthenticationPrincipal SecurityUser principal, Model m) {
+		m.addAttribute("dto", principal.getDto());
+		return "mypage/updateForm";
+		
+		}
+	
+	
+	@PostMapping("/updateMember")
+	public String updateMember(MemberDto dto, @AuthenticationPrincipal SecurityUser principal,Model m) {
+			MemberDto mem = principal.getDto(); //세션에 있는 아이디값을 ()_mem에 넣어주고
+			dto.setMem_id(mem.getMem_id()); //()_mem에 memid가져와주고
+			service.updateMember(dto);
+			m.addAttribute("dto", dto);
+			return "mypage/updateForm";
+		}
+
+	@GetMapping("/deleteMember")
+	public String deleteform(String mem_pw, MemberDto dto, @AuthenticationPrincipal SecurityUser user, Model m) {
+		m.addAttribute("mem_pw", mem_pw);
+		return "mypage/deleteForm";
+	}
+
+	@GetMapping("/deleteMember/wrongpw")
+	public String deleteformError(Model m) {
+		m.addAttribute("error", "비밀번호 틀림");
+		return "mypage/deleteForm";
+	}
+
+	@DeleteMapping("/deleteMember")
+	public String delete(String mem_pw, MemberDto dto,@AuthenticationPrincipal SecurityUser principal, SessionStatus status) {
+		MemberDto mem = principal.getDto();
+		int i = service.deleteMember(mem_pw, mem);
+		if (i == 0) {
+			return "redirect:/deleteMember/wrongpw";
+		} else {
+			status.setComplete();
+			return "redirect:/main";
+		}
+	}
 	
 	
 }

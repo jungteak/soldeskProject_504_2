@@ -50,8 +50,7 @@
 					<ul class="menu">
 						<li><a href="/updateMember">내 정보 확인 / 수정</a></li>
 						<li><a href="/mytkList">예매 확인 / 취소</a></li>
-						<li><a href="/myboardList">내가쓴글</a></li>
-						<li><a href="/deleteMember">회원탈퇴</a></li>
+						<li><a href="/myboardList">내 활동내역</a></li>
 					</ul>
 				</div>
 		</div>

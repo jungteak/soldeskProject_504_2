@@ -9,8 +9,22 @@
 	order by movbd_no DESC
 </select>
 
-<select id="countmyBd" resultType="int">
-	select MOVBD_READCNT from movbd 
+<select id="mycommList" parameterType="String" resultType="movie.pro.mypage.dto.MycommDto"> 
+	select * from movbd_comm
+	where comm_id=#{comm_id}
+	order by comm_no DESC
 </select>
+
+<select id="myinquList" parameterType="String" resultType="movie.pro.mypage.dto.MyinqubdDto"> 
+	select * from INQUBD
+	where inqubd_id=#{inqubd_id}
+	order by inqubd_no DESC
+</select>
+
+
+<select id="countmyBd" resultType="int">
+	select MOVBD_READCOUNT from movbd 
+</select>
+
 
 </mapper>

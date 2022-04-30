@@ -21,7 +21,11 @@ a {
 }
 
 .menu>li {
+<<<<<<< HEAD
 	width: 24.9%; /*20*5=100%*/
+=======
+	width: 33.2%; /*20*5=100%*/
+>>>>>>> refs/remotes/origin/origin-mypage
 	float: left;
 	text-align: center;
 	line-height: 100px;

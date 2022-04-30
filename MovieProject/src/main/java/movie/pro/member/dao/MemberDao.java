@@ -21,6 +21,10 @@ public interface MemberDao {
 	int updatePw(Map<String,Object> m);
 	
 	List<String> idList(Map<String,Object> m);
+
+	int updateMember (MemberDto dto);
+	
+	int deleteMember(String mem_id);
 	
 	int updateMember (MemberDto dto);
 	
