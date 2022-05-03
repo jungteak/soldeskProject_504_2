@@ -14,7 +14,7 @@ public interface MyboardDao {
 	
 	List<MyboardDto> myboardList(String movbd_id);//내글목록
 	
-	int countmyBd();//전체 글 갯수
+	int count();//전체 글 갯수
 	
 	List<MyinqubdDto> myinquList(String inqubd_id);
 	

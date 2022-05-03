@@ -9,7 +9,7 @@
 </style>
 </head>
 <body>
-<form method="post" id="updateform" action="/board/update" >
+<form method="post" id="updateform" action="/movbd/update" >
 <input type="hidden" name="_method" value="put">
 	<table border="1">
 		<tr>	

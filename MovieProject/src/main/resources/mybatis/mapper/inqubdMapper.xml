@@ -3,7 +3,7 @@
 <mapper namespace="movie.pro.servicecenter.dao.InqubdDao">
 
 <insert id="insertInqu" parameterType="movie.pro.servicecenter.dto.InqubdDto">
-	insert into inqubd values(inqubd_seq.nextval,#{inqubd_title},#{inqubd_id},#{inqubd_div},#{inqubd_cinema},#{inqubd_content},sysdate,'','','미답변')
+	insert into inqubd values(inqubd_seq.nextval,#{inqubd_id},#{inqubd_title},#{inqubd_div},#{inqubd_cinema},#{inqubd_content},sysdate,'','','미답변')
 </insert>
 
 <update id="updateInqu" parameterType="movie.pro.servicecenter.dto.InqubdDto">

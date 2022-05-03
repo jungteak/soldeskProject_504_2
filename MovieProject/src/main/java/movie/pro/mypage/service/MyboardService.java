@@ -14,8 +14,8 @@ public class MyboardService {
 	@Autowired
 	MyboardDao dao;
 	
-	public int countmyBd() {
-		return dao.countmyBd();
+	public int count() {
+		return dao.count();
 	}//countmyBoard
 	
 	

@@ -66,6 +66,7 @@
 		        <a href="/admin/cinema/cineList">관리자메뉴</a>
 		        <ol class="sub-menu">
 		          <li class="menu-item"><a href="/admin/cinema/cineList">극장정보 관리</a></li>
+		          <li class="menu-item"><a href="/admin/showinfo/insertShowinfo">상영정보 관리</a></li>
 		        </ol>
 		      </li>
 		      </sec:authorize>

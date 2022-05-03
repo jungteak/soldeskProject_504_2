@@ -16,6 +16,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <link href="/css/joinForm.css" rel="stylesheet">
 <style>
+#pw_msg{color : red;}
 </style>
 </head>
 <body>
@@ -120,10 +121,8 @@
 							<div class="msg" id="result"></div>
 						</div>
 						<div class="form-group">
-							<button type="submit" class="btn btn-block create-account" id="ok">수정완료</button>
-						</div>
-						<div class="form-group">
-							<button type="submit" class="btn btn-block create-account">회원탈퇴</button>
+							<button type="submit" class="btn btn-block create-account">수정완료</button>
+							<button id="mypage" class="btn btn-block create-account">마이페이지 이동</button>
 						</div>
 					</form:form>
 				</div>
@@ -148,7 +147,7 @@
 				}
 			}).open();
 		}//addPost
-		
+
 		let num = "";
 		$(function() {
 
@@ -203,23 +202,45 @@
 			$("#updateform")
 					.submit(
 							function() {
-
+								
 								let pw = $("#password").val();
 								let pwck = $("#password_ck").val();
-								const reg = /^(19[0-9][0-9]|20\\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
-								let birth = $("#birth").val();
-
-
-								if (pw != pwck) {
+								
+								if(!pw){
 									$("#password").focus();
+									$("#pw_msg").html("변경하실 비밀번호를 입력하세요!");
+									return false;
+								}
+								
+								if(!(pw.length>3&&pw.length<14)){
+									$("#pw_msg").html("4~13자리로 비밀번호를 입력해주세요.");
+									return false;
+								}
+
+								if(!pwck){
+									$("#password_ck").focus();
+									$("#pwck_msg").html("비밀번호를 확인 해 주세요");
+									return false;
+								}//비밀번호 확인
+								
+								if(pw!=pwck){
+									$("#password_ck").focu
 									$("#pwck_msg").html("입력한 번호와 일치하지 않습니다.");
 									return false;
 								}//비밀번호 확인
-			$("#ok").click(function(){
-			  console.log($('selectc').val(), $('input[type=text]').val());
-				});
-					})//submit
 
+							})//submit
+
+							$(function(){
+								
+								$("#mypage").click(function(){
+									
+									location.href="/../../mypage";
+									
+								})//click
+								
+							})//ready	
+							
 		})//ready
 	</script>
 

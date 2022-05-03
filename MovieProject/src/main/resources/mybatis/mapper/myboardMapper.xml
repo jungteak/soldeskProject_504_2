@@ -4,7 +4,7 @@
 
 <!-- 내가쓴글 목록 -->
 <select id="myboardList" parameterType="String" resultType="movie.pro.mypage.dto.MyboardDto"> 
-	select * from movbd 
+	select * from movbd
 	where movbd_id=#{movbd_id}
 	order by movbd_no DESC
 </select>
@@ -16,14 +16,14 @@
 </select>
 
 <select id="myinquList" parameterType="String" resultType="movie.pro.mypage.dto.MyinqubdDto"> 
-	select * from INQUBD
+	select * from inqubd
 	where inqubd_id=#{inqubd_id}
 	order by inqubd_no DESC
 </select>
 
 
-<select id="countmyBd" resultType="int">
-	select MOVBD_READCNT from movbd 
+<select id="count" resultType="int">
+	select count(*) from movbd
 </select>
 
 

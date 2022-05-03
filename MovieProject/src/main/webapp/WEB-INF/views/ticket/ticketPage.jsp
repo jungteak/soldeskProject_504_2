@@ -30,6 +30,8 @@
     .p , #pay_msg{display:inline-block;}
         
      #btn_div {margin-top:30px;}
+     
+     #btntable {width: 200px; margin-left: auto; margin-right: auto;}
 	
 </style>
 </head>
@@ -92,7 +94,7 @@
 				method:"delete"
 			}).done(function(data){
 					alert("취소가 완료되었습니다.");
-					location.href="../../mainpage";
+					location.href="../../mytkList";
 				})//ajax 포스터 변경
 			
 		}//if
@@ -100,7 +102,18 @@
 	})//click
 	
 	})//ready
+		
+	
+	$(function(){
+		
+		$("#mytk").click(function(){
 			
+			location.href="/../../mytkList";
+			
+		})//click
+		
+	})//ready	
+	
 </script>
 <body>
 	<sec:authorize access="isAuthenticated()">
@@ -122,7 +135,10 @@
 					<li><div id="pay_msg">결제금액 ${dto.tk_pay}</div><input type="hidden" id="tk_pay" name="tk_pay"></li>
 				</ul>
 			</div>
-			<div align="center" id="btn_div"> <button>내 예매 정보 확인</button></div>
+			<table id = btntable>
+				<td><div align="center" id="btn_div"> <button id="mytk">내 예매 정보 확인</button></div></td>
+				<td><div align="center" id="btn_div"> <button id="delBtn">취소</button></div></td>
+			</table>
 		</div>
 	</div>
 	</c:if>

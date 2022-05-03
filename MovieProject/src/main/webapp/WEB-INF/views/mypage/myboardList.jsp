@@ -49,7 +49,7 @@
 					<c:forEach items="${List}" var="dto">
 						<tr>
 							<td>${dto.movbd_no}</td>
-							<td><a href="../../content/${dto.movbd_no}">${dto.movbd_title}</a></td>
+							<td><a href="../movbd/content/${dto.movbd_no}">${dto.movbd_title}</a></td>
 							<td>${dto.movbd_id}</td>
 							<td><fmt:formatDate value="${dto.movbd_regdate}"
 									dateStyle="short" /></td>
@@ -80,6 +80,7 @@
 			<c:if test="${count != 0 }">
 				<table class="table table-hover">
 					<tr>
+						<th>글 번호</th>
 						<th>제목</th>
 						<th>분류</th>
 						<th>문의한 극장</th>
@@ -87,8 +88,10 @@
 					</tr>
 					<c:forEach items="${IList}" var="dto">
 						<tr>
-							<td>${dto.inqubd_title}</td>
-							<td>${dto.inqubd_div}"</td>
+							<td>${dto.inqubd_no}</td>
+							<td><a href="../inqubd/list">${dto.inqubd_title}</a></td>
+							<td>${dto.inqubd_div}</td>
+							<td>${dto.inqubd_cinema}</td>
 							<td><fmt:formatDate value="${dto.inqubd_regdate}"
 									dateStyle="short" /></td>
 						</tr>

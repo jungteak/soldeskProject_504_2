@@ -117,7 +117,7 @@ public class BoardController {
 		return "movbd/content";
 	}
 	
-	@GetMapping("board/update/{movbd_no}")
+	@GetMapping("movbd/update/{movbd_no}")
 	public String updateForm(@PathVariable int movbd_no, Model m) {
 		BoardDto dto = service.boardOne(movbd_no);
 		m.addAttribute("dto", dto);

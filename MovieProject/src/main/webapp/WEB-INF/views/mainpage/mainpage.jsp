@@ -101,8 +101,7 @@
 	<div id="body">
 	
 	<div id="trailer" align="center"></div>
-	<div id="boxOffice" align="center">
-	</div>
+	<div id="boxOffice" align="center"></div>
 	
 	
 	</div>

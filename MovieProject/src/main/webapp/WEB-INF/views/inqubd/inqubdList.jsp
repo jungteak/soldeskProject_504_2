@@ -56,7 +56,17 @@ table {
 		})//click
 		
 	})//ready
+	
+	$(function(){
 		
+		$("#myinqu").click(function(){
+			
+			location.href="/../../myboardList";
+			
+		})//click
+		
+	})//ready	
+	
 	
 </script>
 <body>
@@ -104,7 +114,7 @@ table {
 			</div>
 			<div align="right">
 				<sec:authorize access="hasAuthority('ROLE_MEMBER')">
-						<button>내가 쓴 문의 글 조회</button>
+						<button id="myinqu">내가 쓴 문의 글 조회</button>
 						<button id="write">새 글 등록</button>
 				</sec:authorize>
 			</div>

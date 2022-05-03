@@ -1,66 +1,43 @@
-@charset "EUC-KR";
-@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400');
+@charset "UTF-8"; 
 
-* {
-	padding: 0;
-	margin: 0
-}
-li {
-	list-style: none
-}
+@import
+	url('https://fonts.googleapis.com/css?family=Montserrat:300,600');
 
-a {
-	text-decoration: none;
-	font-size: 14px
-}
-
-.menu {
-	width: 100%;
-	overflow: hidden;
-	margin: 50px auto 50px auto;
-}
-
-.menu>li {
-<<<<<<< HEAD
-	width: 24.9%; /*20*5=100%*/
-=======
-	width: 33.2%; /*20*5=100%*/
->>>>>>> refs/remotes/origin/origin-mypage
-	float: left;
+body {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 300;
+	line-height: 1.5em;
+	padding: 15px;
 	text-align: center;
-	line-height: 100px;
-	background-color: #5778ff;
-	border-left: 1px solid #c0c0c0;
-	transition: background-color 0.6s;
-	
-}
-.menu>li:hover{
-	
- background-color: #ff8000;
-}
-.menu a {
-	color: #fff;
-	font-size:large;
 }
 
-.footer{
-	display: flex;
-	background: #1f1f1f;
-	padding: 30px;
+dl#dl {
+	margin: 30px auto 60px;
+	max-width: 300px;
 }
 
-.footer > div:first-child {
-	flex: 3;
+dt#dt {
+	background: #85a8e9;
+	border-left: 8px solid #d8d8d8;
+	color: #85a8e9;
+	font-weight: 600;
+	padding: 15px;
+	position: relative;
 	text-align: center;
-	color: white;
+	text-transform: uppercase;
+	transition: all .5s;
+	border-bottom: 10px solid #e7e7e7;
+}
+a{
+	color:white;
+}
+dt:hover {
+	cursor: pointer;
+	background: #ffffff;
+	transition: 1s;
 }
 
-.footer > img:hover{
-	
- background-color: #0080ff;
-}
-.footer > div:last-child {
-	flex: 9;
-	color: white;
-	text-align: center;
+a:hover {
+	color: #d4d4d4;
+	transition: 0.5s;
 }

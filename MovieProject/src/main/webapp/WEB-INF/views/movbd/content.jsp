@@ -15,7 +15,7 @@
 	<tr><td>조회수</td><td>${dto.movbd_readcnt}</td>
 	<tr><td colspan="2" align="right">
 	<c:if test="${ user.mem_id == dto.movbd_id }">
-	<a href="/board/update/${dto.movbd_no}">글 수정 </a> 
+	<a href="/movbd/update/${dto.movbd_no}">글 수정 </a> 
 	<a id="${dto.movbd_no}" href="#">글 삭제</a>
 	</c:if>
 	<a href="../list">목록 이동</a> 
