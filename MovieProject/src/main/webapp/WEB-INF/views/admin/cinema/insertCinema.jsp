@@ -44,7 +44,7 @@
 </script>
 <body>
 	<div id="container">
-	<jsp:include page="/header" flush="true"/>
+	<jsp:include page="../../header.jsp" flush="true"/>
 		<div id="body">
 			<form id="insertCinema" method="post">
 				<table>
