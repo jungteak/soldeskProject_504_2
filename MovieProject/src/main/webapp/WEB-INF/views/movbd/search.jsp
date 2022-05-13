@@ -5,45 +5,53 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+
 <title>검색 글 목록</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;800&family=Roboto+Serif:ital@1&family=Roboto:wght@700&display=swap" rel="stylesheet">
 <style>
-#center {
-	width: 700px;
-	margin-left: auto;
-	margin-right: auto;
-}
 
+*{
+	font-family: 'Nanum Gothic', sans-serif;
+	
+}
+table *{text-align:center;}
+table {width: 100%;}
+h1 {font-weight:bold; margin-left:10px; margin-bottom:30px;}
 table {
-	border: 1px solid black;
-	width: 700px;
-	border-collapse: collapse;
-}
+    width: 100%;
+    border-top: 1px solid #C0C0C0;
+    border-collapse: collapse;
+  }
+  th, td {
+    border-bottom: 1px solid #C0C0C0;
+    padding: 10px;
+  }
+  .new{font-size:16px; font-weight:bold;}
+  
+  #center, .new {
+  	margin-left: 10px;
+	margin-right: 10px;
+  }
+  
+  .menu {background-color:#A1BAF5;}
 
-th {border: 1px solid black;
-	background-color: orange;
-	width: 150px;
-}
-td{border: 1px solid black;}
-a {
-	margin: 10px auto;
-}
-
-#page {
-	text-align: center;
-}
 </style>
 </head>
 <body>
 	<div id="center">
-		<h1>${search}로 검색한 결과입니다.</h1>
+		<h1>${search}(으)로 검색한 결과입니다.</h1>
 		
-		<div align="right">
-			<a href="/main">main</a><a href="list">새글 등록</a>
-		</div>
+
 
 		<c:if test="${count != 0 }">
 			<table>
-				<tr>
+				<tr class="menu">
 					<th>제목</th>
 					<th>작성자</th>
 					<th>작성일</th>
@@ -58,7 +66,7 @@ a {
 					</tr>
 				</c:forEach>
 			</table>
-			<div id="page">
+			<div id="page" align="center">
 				<c:if test="${begin > pageNum }">
 					<a href="search?p=${begin-1}&search=${search}&searchn=${searchn}">[이전]</a>
 				</c:if>
@@ -74,13 +82,19 @@ a {
 		<c:if test="${count == 0 }">
 	검색 조건에 맞는 글이 없습니다.
 </c:if>
+
+		<div class="new" align="right">
+			<a href="list">새글 등록</a>
+		</div>
+		
 <div id="search" align="center">
 <form action="search">
 <select name="searchn">
 <option value="0">글제목</option>
 <option value="1">작성자</option>
 </select>
-<input type="text" name="search" size="15" maxlength="50" /> 
+<input type="text" name="search" size="15" maxlength="50"
+placeholder="키워드를 입력해주세요." style="width: 300px;" /> 
 <input type="submit" value="검색" />
 </form>	
 	</div>

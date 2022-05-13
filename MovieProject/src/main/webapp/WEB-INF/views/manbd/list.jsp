@@ -18,6 +18,7 @@
 	margin-right: auto;
 }
 
+}
 h1 {		/*---게시글목록(타이핑)---*/
 	text-align: left;
 	color : #d717e8
@@ -30,7 +31,7 @@ table {    /*---표 부분---*/
 	text-align: center;
 }
 
-tr {   /*---표 전체(디자인 설정)---*/
+#tr {   /*---표 전체(디자인 설정)---*/
 	padding: 60px;
 	max-width: 650px;
 	background: #80d5a6;
@@ -124,6 +125,7 @@ padding : 10px;
 
 
 <body>
+<jsp:include page="/header" flush="true"/>
 	<div id = "top" align="right">
 			<sec:authorize access="hasAuthority('ROLE_ADMIN')">
 				<a href="/manbd/write" class="write">새글등록</a>
@@ -158,7 +160,7 @@ padding : 10px;
 					</tr>
 					
 				<c:forEach items="${bList}" var="managerbd">
-					<tr>
+					<tr id="tr">
 						<td>${managerbd.manbd_no}</td>
 						<td><a href="content/${managerbd.manbd_no}">${managerbd.manbd_title}</a></td>
 						<td>${managerbd.manbd_div}</td>
@@ -181,7 +183,7 @@ padding : 10px;
 					</tr>
 					
 				<c:forEach items="${nList}" var="notice">
-					<tr>
+					<tr id="tr">
 						<td>${notice.manbd_no}</td>
 						<td><a href="content/${notice.manbd_no}">${notice.manbd_title}</a></td>
 						<td>${notice.manbd_div}</td>
@@ -195,7 +197,7 @@ padding : 10px;
 
 			<div id="tab-3" class="tab-content">
 				<table>
-					<tr>
+					<tr id="tr">
 						<th>글번호</th>
 						<th>제목</th>
 						<th>공지사항/이벤트</th>
@@ -204,7 +206,7 @@ padding : 10px;
 					</tr>
 					
 				<c:forEach items="${eList}" var="event">
-					<tr>
+					<tr id="tr">
 						<td>${event.manbd_no}</td>
 						<td><a href="content/${event.manbd_no}">${event.manbd_title}</a></td>
 						<td>${event.manbd_div}</td>
@@ -266,6 +268,8 @@ padding : 10px;
 			<input type="submit" value="검색" class="button" />
 		</form>
 	</div>
-
+<div id="footer">
+ <tr id="foter"><jsp:include page="/footer" flush="true"/></tr>
+</div>
 </body>
 </html>

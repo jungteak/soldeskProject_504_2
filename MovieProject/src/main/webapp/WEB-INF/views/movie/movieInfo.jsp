@@ -7,7 +7,7 @@
 	
 	td {padding:10px;}
 	
-	.poster {padding:10px; cursor:pointer;}
+	.poster {padding:10px; cursor:pointer; margin-left:500px;}
 	
 	#body{margin:auto;}
 	
@@ -65,7 +65,7 @@
 	table tr td {border-collapse:collapse;}
 	.title,.tagline {font-size:20px}
 	
-	.name,.peopleImg {margin:auto;}
+	.name,.peopleImg {margin:auto; align: center;}
 	
 	details summary {font-weight:bold; font-size:20px;}
 </style>
@@ -266,7 +266,7 @@
 </script>
 <body>
 <div id="container">
-	
+	<jsp:include page="/header" flush="true"/>
 	
 	<div id="body">
 	<div id="movieMenu" align="center">
@@ -295,5 +295,6 @@
 		</div>
 	</div>
 </div>
+
 </body>
 </html>

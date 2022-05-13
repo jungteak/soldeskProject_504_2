@@ -33,7 +33,7 @@
 <select parameterType="int" id="boardOne" resultType="movie.pro.movbd.dto.BoardDto"> select * from movbd where movbd_no = #{movbd_no} </select>
 
 <select id="countSearch" resultType="int" parameterType="map">
-<![CDATA[
+<!--  <![CDATA[-->
 		select count(*) from movbd 
 		<where>
 			<choose>
@@ -42,11 +42,11 @@
 				<when test="searchn == 1"> MOVBD_ID  like '%'||#{search}||'%' </when>
 			</choose>
 		</where> 
-		]]>
+		<!--  ]]>-->
 </select>
 
 <select id="boardListSearch" parameterType="map" resultType="movie.pro.movbd.dto.BoardDto">
-	<![CDATA[	
+
 		select * from
 		(select movbd_no, movbd_id,movbd_title, movbd_content, movbd_regdate, movbd_readcnt, rownum r
 		from (select * from movbd order by movbd_regdate desc) 
@@ -60,7 +60,7 @@
 		order by movbd_regdate desc    
 		
 		) where r >= #{start} AND r &lt;= #{end}
- 		]]>
+ 		
 </select>
 
 </mapper>

@@ -26,15 +26,15 @@
 		<form method="post" id="writeform">
 		<table border="1">
 			<tr>
-				<td class="item">제목</td>
+				<td class="item">질 문</td>
 				<td><input name="qnabd_q"></td>
 			</tr>
 			<tr>
-				<td class="item">답변</td>
+				<td class="item">답 변</td>
 				<td><textarea name="qnabd_a"></textarea></td>
 			</tr> 
 		</table>
-			<button type="submit" id="save" class="custom-btn btn-5">등록</button>
+			<button type="submit" id="save" class="custom-btn btn-5">등 록</button>
 		</form>
 	</div>
 

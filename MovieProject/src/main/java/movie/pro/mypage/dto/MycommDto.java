@@ -11,5 +11,5 @@ public class MycommDto {
 	private String comm_id;//작성자 아이디
 	private String comm_content;
 	private Date comm_regdate;
-	
+	private String movbd_no;
 }

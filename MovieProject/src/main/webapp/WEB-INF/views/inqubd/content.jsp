@@ -133,7 +133,7 @@ table {
 </script>
 <body>
 <div id="container">
-
+<jsp:include page="/header" flush="true"/>
 <div id="body">
 		<table id="content" border="1">
 			<tr><td class="item">제목</td><td colspan="3">${dto.inqubd_title}</td></tr>
@@ -217,5 +217,6 @@ table {
 			<!-- list -->
 	</div>
 </div>
+<jsp:include page="/footer" flush="true"/>
 </body>
 </html>

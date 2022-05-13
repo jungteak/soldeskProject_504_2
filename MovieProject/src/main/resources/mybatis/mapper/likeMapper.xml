@@ -8,14 +8,14 @@
 
 	<select id="ltlikecount" resultType="Integer"
 		parameterType="movie.pro.movbd.dto.LikeDto">
-		select count(ltlike) from movbd_up where
+		select count(*) from movbd_up where
 		movbd_id=#{movbd_id} and movbd_no=#{movbd_no}
 	</select>
 
 	<insert id="likeinsert" parameterType="movie.pro.movbd.dto.LikeDto">
 		insert into
-		movbd_up(movbd_id,movbd_no)
-		values (#{movbd_id},#{movbd_no})
+		movbd_up(movbd_id,movbd_no,LTLIKE)
+		values (#{movbd_id},#{movbd_no},0)
 	</insert>
 
 	<select id="ltlikegetinfo" resultType="Integer"
@@ -37,7 +37,7 @@
 		</if>
 
 		<if test="count == 0">
-			ltlike = ltlike + 1
+			ltlike = 1
 		</if>
 	</sql>
 

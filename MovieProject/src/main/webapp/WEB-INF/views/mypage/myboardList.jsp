@@ -29,6 +29,7 @@
 
 </head>
 <body>
+<jsp:include page="/header" flush="true"/>
 	<nav>
 		<!-- 내가쓴글 -->
 		<div id="container-fluid">
@@ -122,14 +123,14 @@
 			<c:if test="${count != 0 }">
 				<table class="table table-hover">
 					<tr>
-						<th>댓글번호</th>
+						<th>게시글 번호</th>
 						<th>댓글내용</th>
 						<th>작성일</th>
 					</tr>
 					<c:forEach items="${CList}" var="dto">
 						<tr>
-							<td>${dto.comm_no}</td>
-							<td>${dto.comm_content}"</td>
+							<td>${dto.movbd_no}</td>
+							<td><a href="../movbd/content/${dto.movbd_no}">${dto.comm_content}</td>
 							<td><fmt:formatDate value="${dto.comm_regdate}"
 									dateStyle="short" /></td>
 						</tr>
@@ -151,5 +152,6 @@
 
 		</div>
 	</nav>
+		<jsp:include page="/footer" flush="true"/>
 </body>
 </html>

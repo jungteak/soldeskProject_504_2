@@ -58,7 +58,7 @@
 
 <body>
 	<div id=container>
-		
+			<jsp:include page="/header" flush="true"/>
 		<div id="body">
 		<form id="ticketingForm" method="post">
 			<sec:authorize access="isAuthenticated()">
@@ -105,6 +105,7 @@
 		</div>
 		
 	</div>
+	<jsp:include page="/footer" flush="true"/>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>

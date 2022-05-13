@@ -44,7 +44,7 @@
 </script>
 <body>
 	<div id="container">
-	
+	<jsp:include page="/header" flush="true"/>
 		<div id="body">
 			<form id="insertCinema" method="post">
 				<table>
@@ -63,5 +63,6 @@
 		</div>
 	
 	</div>
+	<jsp:include page="/footer" flush="true"/>
 </body>
 </html>

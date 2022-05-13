@@ -120,6 +120,7 @@
 	<sec:authentication property="principal" var="user" />
 	<c:if test="${user.username==dto.tk_id}">
 	<div id="container">
+	<jsp:include page="/header" flush="true"/>
 		<div id="body">
 			<div id="poster">
 			
@@ -140,8 +141,10 @@
 				<td><div align="center" id="btn_div"> <button id="delBtn">취소</button></div></td>
 			</table>
 		</div>
+			<jsp:include page="/footer" flush="true"/>
 	</div>
 	</c:if>
 	</sec:authorize>
+
 </body>
 </html>

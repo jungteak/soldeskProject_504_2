@@ -13,12 +13,14 @@
 	margin-left: auto;
 	margin-right: auto;
 }
-
+#div{
+	padding: 10px;
+}
 table * {text-align:center;}
 
 .no{width:100px;}
 .div{width:100px;}
-.cine{width:100px;}
+.cine{width:150px;}
 .title{width:750px; overflow:hidden;}
 .id{width:100px;overflow:hidden;}
 .date{width:100px;}
@@ -70,6 +72,7 @@ table {
 	
 </script>
 <body>
+<jsp:include page="/header" flush="true"/>
 	<div id="body">
 		<div id="serviceMenu" align="center">
 		<div class="qna"><a href="/qnabd/list">자주 묻는 질문</a>
@@ -112,7 +115,7 @@ table {
 				</c:if>
 			</div>
 			</div>
-			<div align="right">
+			<div id="div" align="right">
 				<sec:authorize access="hasAuthority('ROLE_MEMBER')">
 						<button id="myinqu">내가 쓴 문의 글 조회</button>
 						<button id="write">새 글 등록</button>
@@ -126,5 +129,6 @@ table {
 			</sec:authorize>
 		</c:if>
 	</div>
+		<jsp:include page="/footer" flush="true"/>
 </body>
 </html>

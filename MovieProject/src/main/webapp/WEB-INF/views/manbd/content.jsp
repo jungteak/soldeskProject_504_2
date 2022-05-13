@@ -17,7 +17,7 @@
 
 h1 {		/*---게시글목록(타이핑)---*/
 	text-align: left;
-	color : #d717e8
+	color : #d717e8;
 }
 h2 {		/*---게시글목록(타이핑)---*/
 	text-align: left;
@@ -31,7 +31,9 @@ table {    /*---표 부분---*/
 	text-align: center;
 	margin: 10px auto;
 }
-
+div > a {
+padding:10px;
+}
 tr {   /*---표 전체(디자인 설정)---*/
 	padding: 60px;
 	max-width: 650px;
@@ -124,6 +126,7 @@ padding : 10px;
 }
 
 </style>	
+<jsp:include page="/header" flush="true"/>
 <body>
 	<div id = "top" align="right" > 
 		<sec:authorize access="hasAuthority('ROLE_ADMIN')">
@@ -237,5 +240,6 @@ padding : 10px;
 	})//ready
 
 </script>
+<jsp:include page="/footer" flush="true"/>
 </body>
 </html>

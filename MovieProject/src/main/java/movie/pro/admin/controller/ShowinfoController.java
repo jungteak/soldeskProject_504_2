@@ -33,7 +33,7 @@ public class ShowinfoController {
 		
 		service.insertShowinfo(dto);
 		
-		return "redirect:/ticket/showinfoMovList";
+		return "redirect:/ticket/showinfoCineList";
 	}//insertShowinfo
 	
 	@GetMapping("admin/showinfo/updateShowinfo")

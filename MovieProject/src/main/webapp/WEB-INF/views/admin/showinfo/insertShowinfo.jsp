@@ -178,6 +178,7 @@
 </script>
 <body>
 <div id="container">
+<jsp:include page="/header" flush="true"/>
 <div id="body">
 <form id="insertShowinfo" method="post">
 	<table>
@@ -211,4 +212,5 @@
 
 </div>
 </body>
+<jsp:include page="/footer" flush="true"/>
 </html>                                                                              

@@ -7,13 +7,90 @@
 <title>상영정보 리스트</title>
 </head>
 <style>
+
+
+#msg{margin:auto; list-style:none; width:30%; height:50px;background-color:#A3B3D9; text-align:center; line-height:50px; display:inline-block;
+border: 1px solid black; 
+}
+table > div #timeTable {
+margin-top:30px
+}
+
+table > td > li {
+background-color: #A3B3D9;
+}
+
+#tabs ul > li {
+margin-top:50px;
+}
+ul > li > a:hover {
+background-color:#A3B3D9;
+}
+
+table > #cineArea li{
+border: 1px solid black;
+}
+
+ #list div{
+ padding:5px;  margin:5px;
+} 
+
+#list div:hover{
+background-color: #A3B3D9;
+ transition: background-color .5s;
+} 
+
+.date:hover{
+background-color: #A3B3D9;
+ transition: background-color .5s;
+}
+
+.jbBox{
+background-color:gold;
+}
+
+.jb{
+background-color:green;
+}
+
+table{
+border: 2px solid black;
+width:100%;
+}
+#poster{
+width:30%;
+}
+#tabs:hover{
+background-color: #A3B3D9;
+transition: background-color .5s;
+}
+
+	#list div:visited {text-decoration:none;}
+
 	#select_date li {display:inline-block;}
 	#select_date li div{padding:5px;}
+	#select div {display:inline-block;margin:auto;width:150;hegiht:75}
+ 	#result .th_line div {display:inline-block;}
+
+	
 	#select li {padding:5px;}
 	#list li{display:inline-block; padding:5px;}
 	#list li div{padding:5px;}
 	#cineArea li{padding:10px; display: inline-block;}
 	#result .th_line div {display:inline-block;}
+	
+#cineArea li{
+background-color:#A3B3D9;
+}	
+
+#menutable>td{
+background-color:#A3B3D9;
+}
+	
+
+	
+	
+
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -61,7 +138,7 @@
 							img = "/images/noImg.JPG";
 						}
 						
-						$("#poster").append("<img class='poster' width=300 height=400 src="+img+">");
+						$("#poster").append("<img class='poster' width=350 height=600 src="+img+">");
 					}
 					
 					list += "<div class='movList' id="+data.results[j].id+" title='"+data.results[j].title+"'>"+data.results[j].title+"</div>";
@@ -418,13 +495,31 @@
 		
 	})//ready
 	
+	   $(document).ready(function () {
+           $(".movList").each(function () {
+               $(this).click(function () {
+                   $(this).addClass("jbBox");                      //클릭된 부분을 상단에 정의된 CCS인 selected클래스로 적용
+                   $(this).siblings().removeClass("jbBox");  //siblings:형제요소들,    removeClass:선택된 클래스의 특성을 없앰
+               });
+           });
+       }); //클릭시 색상 변환
+       
+       $(document).ready(function () {
+           $(".movList").each(function () {
+               $(this).click(function () {
+                   $(this).addClass("jb");                      //클릭된 부분을 상단에 정의된 CCS인 selected클래스로 적용
+                   $(this).siblings().removeClass("jb");  //siblings:형제요소들,    removeClass:선택된 클래스의 특성을 없앰
+               });
+           });
+       }); //클릭시 색상 변환
 </script>
 <body>
+<jsp:include page="/header" flush="true"/>
 <div id="container">
 <div id="selectMenu">
 	<table id="menuTable">
 		<tr>
-			<td rowspan="2"><ul><li><a href="showinfoMovList">영화별</a></li><li><a href="showinfoCineList">극장별</a></li></ul></td>
+			<td id="tabs" rowspan="2"><ul><li><a href="showinfoMovList">영화별</a></li><li><a href="showinfoCineList">극장별</a></li></ul></td>
 			<td><ul id="select"><li>전체 영화</li></ul></td>
 		</tr>
 		<tr><td><ul id="list">
@@ -441,5 +536,6 @@
 </div>
 
 </div>
+<jsp:include page="/footer" flush="true"/>
 </body>
 </html>

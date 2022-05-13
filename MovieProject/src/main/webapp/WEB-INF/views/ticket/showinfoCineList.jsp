@@ -7,23 +7,37 @@
 <title>상영정보 리스트</title>
 </head>
 <style>
-	
+
 	#body {width:1400px;margin:auto;}
-	
 	#select_date li {display:inline-block;}
 	#select_date li div{padding:5px;}
 	#select div {display:inline-block;margin:auto;width:150;hegiht:75}
-	
 	#list li div {display:inline-block; padding:5px;}
 	#result .th_line div {display:inline-block;}
 	#selectMovCine li a {color:white;}
+	
 	#selectMovCine li a:link {text-decoration:none;}
 	#selectMovCine li a:visited {text-decoration:none;}
 	#selectMovCine li a:hover {text-decoration:underline;}
 	#selectMovCine li a:active {text-decoration:underline;}
 	#selectMovCine li {list-style:none; width:100px; height:50px;background-color:#A3B3D9;text-align:center;line-height:50px;}
 	#selectMovCine #selected {background-color:#072260;}
+	#selectcineList #selected {background-color:#072260;}
+
+.date{background-color:#A3B3D9; border: 1px solid black; margin:auto;  text-align:center; width:150px;}
+.selectArea{background-color:#A3B3D9; padding:20px; border: 1px solid black; margin:10px;}
+.cineList{background-color:#A3B3D9; border: 1px solid black; margin:5px;}
+.jbBox{background-color:gold;}	
+.jb{background-color:gold;}	
+#msg{list-style:none; width:230px; height:50px;background-color:#A3B3D9; text-align:center; line-height:50px; display:inline-block;
+}
+#th_info{background-color:#A3B3D9; border: 1px solid black; margin:5px;
+}
+
+
+
 </style>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(function(){
@@ -40,7 +54,7 @@
 			date = date.toISOString().substr(0,10);
 			let date_arr = date.split("-");
 			
-			$("#select_date").append("<li><div class='date' id="+date+"><div>"+date_arr[0]+"."+date_arr[1]+"</div><div align='center'>"+date_arr[2]+"</div></div></li>");
+			$("#select_date").append("<li><div class='date' id="+date+"><div>"+date_arr[0]+"."+date_arr[1]+"."+date_arr[2]+"</div><div textalign='center'></div></div></li>");
 		}//for select_date 설정	
 		
 		for(let i in areaList){
@@ -107,19 +121,19 @@
 								th_no = data[i].th_no;
 								chk=1;
 								str += "<div class='mov_title'><h4>"+data[i].mov_title+"</h4></div><hr>";
-								str += "<div class='th_line'><div class='th_info'><ul><li>"+data[i].th_no+"관</li><li>총 "+(data[i].th_col*data[i].th_row)+"석</li></ul></div>";
+								str += "<div class='th_line'><div class='th_info'><ul><li>상영관 : "+data[i].th_no+"관</li><li>총좌석 : "+(data[i].th_col*data[i].th_row)+"석</li></ul></div>";
 							}//if
 							
 							if(mov_no != data[i].mov_no){
 								mov_no = data[i].mov_no;
 								th_no = data[i].th_no;
 								str += "<hr></div><div class='mov_title'><h4>"+data[i].mov_title+"</h4></div><hr>"
-								str += "<div class='th_line'><div class='th_info'><ul><li>"+data[i].th_no+"관</li><li>총 "+(data[i].th_col*data[i].th_row)+"석</li></ul></div>";
+								str += "<div class='th_line'><div class='th_info'><ul><li>상영관 : "+data[i].th_no+"관</li><li>총좌석 : "+(data[i].th_col*data[i].th_row)+"석</li></ul></div>";
 							}//if
 							
 							if(th_no != data[i].th_no){
 								th_no = data[i].th_no;
-								str += "</div><hr><div class='th_line'><div class='th_info'><ul><li>"+data[i].th_no+"관</li><li>총 "+(data[i].th_col*data[i].th_row)+"석</li></ul></div>";
+								str += "</div><hr><div class='th_line'><div class='th_info'><ul><li>상영관 : "+data[i].th_no+"관</li><li>총좌석 : "+(data[i].th_col*data[i].th_row)+"석</li></ul></div>";
 							}//if
 							
 							let show_h = data[i].show_h;
@@ -131,7 +145,7 @@
 								show_m = "00";
 							}//if
 							
-							str += "<div class='show_info' id="+data[i].show_no+" title="+data[i].show_no+"><ul><li>"+show_h+":"+show_m+"</li><li>"+data[i].th_extra+"석</li></ul></div>";
+							str += "<div class='show_info' id="+data[i].show_no+" title="+data[i].show_no+"><ul><li>"+show_h+":"+show_m+"</li><li>남은좌석 : "+data[i].th_extra+"석</li></ul></div>";
 						
 							
 						}//for
@@ -160,8 +174,7 @@
 		
 		//여기까지 초기 설정
 		
-		$("#select").on("click",".selectArea",function(){
-			
+		$("#select").on("click",".selectArea", function(){
 			let cine_area = $(this).attr("id");
 			let show_date = new Date().toISOString().substr(0,10);
 			
@@ -367,7 +380,6 @@
 		});// cineList click
 		
 		$(".date").click(function(){
-			
 			let cine_no = $("#cine_no").val();
 			let show_date = $(this).attr("id");
 			
@@ -457,8 +469,31 @@
 		
 	})//ready
 	
+
+	   $(document).ready(function () {
+           $(".selectArea").each(function () {
+               $(this).click(function () {
+                   $(this).addClass("jbBox");                      //클릭된 부분을 상단에 정의된 CCS인 selected클래스로 적용
+                   $(this).siblings().removeClass("jbBox");  //siblings:형제요소들,    removeClass:선택된 클래스의 특성을 없앰
+               });
+           });
+       }); //클릭시 색상 변환
+       
+	   $(document).ready(function () {
+           $(".date").each(function () {
+               $(this).click(function () {
+                   $(this).addClass("jbBox");                      //클릭된 부분을 상단에 정의된 CCS인 selected클래스로 적용
+                   $(this).siblings().removeClass("jbBox");  //siblings:형제요소들,    removeClass:선택된 클래스의 특성을 없앰
+               });
+           });
+       }); //클릭시 색상 변환
+       
+
+       
+       
 </script>
 <body>
+<jsp:include page="/header" flush="true"/>
 <input type="hidden" id="cine_no">
 <div id="container">
 <div id="body">
@@ -482,5 +517,6 @@
 </div>
 </div>
 </div>
+<jsp:include page="/footer" flush="true"/>
 </body>
 </html>

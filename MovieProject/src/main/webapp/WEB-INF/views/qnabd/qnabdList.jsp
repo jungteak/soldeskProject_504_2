@@ -70,9 +70,12 @@ summary::marker {
 	display: none;
 	content: "";
 }
-
+div > button {
+padding:10px;
+}
 #qnainsert {
 	font-weight: bold;
+	padding:10px;
 }
 </style>
 </head>

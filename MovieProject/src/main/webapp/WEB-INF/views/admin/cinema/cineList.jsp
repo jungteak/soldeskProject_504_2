@@ -116,6 +116,7 @@
 </script>
 <body>
 	<div id="container">
+	<jsp:include page="/header" flush="true"/>
 		<div id="body">
 			<div id="select_area" align="center">
 				<div <c:if test="${cineArea=='서울'}">class='selected'</c:if>><a href="cineList?cineArea=서울">서울</a>
@@ -149,5 +150,6 @@
 			<div align="center"><button id="insertCinema">극장 등록</button></div>
 		</div>
 	</div>
+	<jsp:include page="/footer" flush="true"/>
 </body>
 </html>

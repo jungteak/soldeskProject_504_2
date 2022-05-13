@@ -17,6 +17,7 @@
 <style>
 </style>
 <body>
+<jsp:include page="/header" flush="true"/>
 	<nav>
 	<div id="container-fluid">
 		<div id="row">
@@ -61,5 +62,6 @@
 		</div>
 	</div>
 	</nav>
+	<jsp:include page="/footer" flush="true"/>
 </body>
 </html>

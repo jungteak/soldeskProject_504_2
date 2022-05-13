@@ -29,7 +29,7 @@
 	});
 
 	function likeupdate(){
-		
+		alert("좋아요")
 		likeurl = "/like/likeupdate",
 		id = '${user.mem_id}',
 		movbd_no = ${dto.movbd_no},
@@ -41,8 +41,8 @@
 	$.ajax({
 		url : likeurl,
 		type : 'PUT',
-		contentType: 'application/json',
-		data : JSON.stringify(data),
+		//contentType: 'application/json',
+		data : data,
 		success : function(result){
 			console.log("수정" + result.result);
 			if(count == 1){
